@@ -16,6 +16,4 @@ echo Creating image...
 @copy VH-DOS\tmp\zero.ima disk.img
 @dd if=VH-DOS/compile.bin of=disk.img conv=notrunc
 
-REM @qemu\qemu-system-i386 -fda disk.img -boot a
-
 @pause

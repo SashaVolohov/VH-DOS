@@ -11,8 +11,7 @@
 
 macro align value { db value-1 - ($ + value-1) mod (value) dup 0 }
 HEADS = 1
-; SPT = 7	;6 сектора по 512 байт
-SPT = 2
+SPT = 6	;6 сектора по 512 байт
 Begin:
 	file "boot\boot.bin",512 ; Первый загрузчик(MBR)
 	file "boot\DOSLDR.bin"; Второй загрузчик - DOSLDR
