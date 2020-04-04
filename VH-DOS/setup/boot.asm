@@ -1,8 +1,8 @@
 ; Операционная система VH-DOS
 ; Copyright(C) Саша Волохов, 2020.
 
-; Данный файл служит для запуска ОС.
-; Этот файл находится в MBR дискеты/жёсткого диска. Загружается по адресу 0x7c00
+; Данный файл служит для запуска установщика ОС.
+; Этот файл находится в MBR дискеты. Загружается по адресу 0x7c00
 
 org 7c00h
 
@@ -19,16 +19,10 @@ sti
 mov ax, 0002h
 int 10h
 
-mov ah,02h
-mov bh,0
-mov dh,0
-mov dl,0
-int 10h
-
 mov bp,fail_ldr
 mov cx, 18
 
-call print_mes
+call PrintMes
 
 mov ah,02h
 mov bh,0
@@ -39,7 +33,7 @@ int 10h
 mov bp,fail_ldr_two
 mov cx, 29
 
-call print_mes
+call PrintMes
 
 mov ax,0000h
 mov es,ax
@@ -47,7 +41,7 @@ mov bx,500h
 mov ch,0
 mov cl,02h
 mov dh,0
-mov	dl,80h
+mov	dl,0h
 mov al,01h
 mov ah,02h
 int 13h
@@ -61,20 +55,16 @@ mov dh,2
 mov dl,0
 int 10h
 
-jmp $
-
-print_mes:
-mov bl,07h					
-xor bh,bh
-mov ax,1301h
-int 10h
-mov si,0
-ret
+PrintMes:                   ;в регистре  bp - строка, в регистре cx - длина этой строки
+        mov bl,07h
+        mov ax,1301h
+        int 10h
+        ret
+        ;----------------------------------
 		
 ClearMes:
 	mov bp,null
 	mov cx,0
-	call print_mes
 ret
 		
 fail_ldr db 'DOSLDR is missing.',0

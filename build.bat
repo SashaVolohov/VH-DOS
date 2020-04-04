@@ -8,6 +8,10 @@ echo Compile source...
 @fasm VH-DOS\kernel\BytR.asm
 @fasm VH-DOS\kernel\RASR.asm
 
+@fasm VH-DOS\setup\boot.asm
+@fasm VH-DOS\setup\DOSLDR.asm
+@fasm VH-DOS\setup\finish.asm
+
 @fasm VH-DOS\compile.asm
 
 echo Creating image...
