@@ -11,7 +11,6 @@ Add your idea here!
 
 - Write file system [Not completed]
 - Make a program for creating / displaying PGM files [Not completed]
-- Make the installer [Not completed]
 - Live diskette in the installer [Not completed]
 - Restore System [Not completed]
 - User system [Not completed]
