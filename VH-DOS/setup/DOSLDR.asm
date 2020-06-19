@@ -154,15 +154,15 @@ install:
 	
 	mov ax,0000h
 	mov es,ax
-	mov bx,700h
+	mov bx,800h
 	mov ch,0
 	mov cl,05h
 	mov dh,0
-	mov	dl,0h
+	mov dl,0h
 	mov al,01h
 	mov ah,02h
-	int 13h ; чтение boot файла
-	jmp 0000:0700h
+	int 13h
+	jmp 0000:0800h
 
 disk_error:
 	mov ax, 0002h

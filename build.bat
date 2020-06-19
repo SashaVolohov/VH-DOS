@@ -7,6 +7,8 @@ echo Compile source...
 @fasm VH-DOS\kernel\PDWFEDX.asm
 @fasm VH-DOS\kernel\BytR.asm
 @fasm VH-DOS\kernel\RASR.asm
+@fasm VH-DOS\programs\command.asm
+@fasm VH-DOS\programs\cls.asm
 
 @fasm VH-DOS\setup\boot.asm
 @fasm VH-DOS\setup\DOSLDR.asm
