@@ -1,4 +1,4 @@
-org 800h
+  org 800h
 
 message:
   mov ax,2
