@@ -7,7 +7,7 @@
 
 start:
 	mov ax, 0002h
-    int 10h
+	int 10h
 	
 	mov ah,02h
 	mov bh,0
