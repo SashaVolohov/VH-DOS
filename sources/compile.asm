@@ -1,41 +1,41 @@
 ; Операционная система VH-DOS
-; Copyright(C) Саша Волохов, 2019.
-; Copyright(C) Антон Фёдоров, 2019.
+; © Саша Волохов, Антон Фёдоров. 2019-2021.
 
-; Данный файл служит для компиляции ОС.
-; Здесь собраны все файлы ОС.
-; Шаблон для добавления своего файла(будет занимать 1 сектор, файл должен быть менее 512 байт, или равен этому количеству!):
+; Данный файл служит для компиляции всей ОС.
+; Он указывает, в каком формате должен быть выходной BIN файл
 
-;file "путь к файлу" ; *краткое описание файла и Ваш копирайт*
-;align 512
+; Шаблон для добавления своего файла*:
+; ` file "путь к файлу" ; *краткое описание файла и Ваш копирайт*
+; ` align 512
+; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
-macro align value { db value-1 - ($ + value-1) mod (value) dup 0 }
+macro align value { db value - 1 - ($ + value - 1) mod (value) dup 0 }
 HEADS = 1
 SPT = 7
-Begin:
-	; file "boot\boot.bin",512 ; Первый загрузчик(MBR)
-	; file "boot\DOSLDR.bin"; Второй загрузчик - DOSLDR
+begin:
+	; file "boot\boot.bin",512 ; Первый загрузчик (MBR)
+	; file "boot\DOSLDR.bin" ; Второй загрузчик (DOSLDR)
 	; align 512
-	; file "kernel\FHTA.bin"; Перевод HEX в ASCII. Copyright (C) Антон Фёдоров, 2019
+	; file "kernel\FHTA.bin" ; Функция:  Перевести HEX в ASCII
 	; align 512
-	; file "kernel\PDWFEDX.bin" ; Печатать двойное слово из EDX. Copyright(C) Антон Фёдоров, 2019
+	; file "kernel\PDWFEDX.bin" ; Функция: Печатать двойное слово из EDX
 	; align 512
-	; file "kernel\BytR.bin" ; Переворачивает байты в AХ. Copyright (C) Антон Фёдоров, 2019
+	; file "kernel\BytR.bin" ; Функция: Перевернуть байты в AХ задом наперёд
 	; align 512
-	; file "kernel\RASR.bin" ; Сбрасывает все регистры. Copyright (C) Антон Фёдоров, 2019
+	; file "kernel\RASR.bin" ; Функция:  Сброс всех сегметных регистров
 	; align 512
 	; align HEADS*SPT*512
 	
-	file "setup\boot.bin",512 ; Первый загрузчик(MBR) установщик
-	file "setup\DOSLDR.bin"; Второй загрузчик - DOSLDR установщик
+	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик
+	file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
 	align 512
-	file "boot\boot.bin",512 ; Загрузчик(MBR)
-	file "boot\DOSLDR.bin"; DOSLDR
+	file "boot\boot.bin",512 ; Загрузчик
+	file "boot\DOSLDR.bin" ; DOSLDR
 	align 512
-	file "setup\finish.bin"; Файл, который запускается, когда установка завершена
+	file "setup\finish.bin" ; Этот файл запускается после установки
 	align 512
-	file "programs\command.bin"; COMMAND.SYS
+	file "programs\command.bin" ; COMMAND.SYS
 	align 512
-	file "programs\cls.bin"; command help
+	file "programs\cls.bin" ; команда "help"
 	align 512
 	align HEADS*SPT*512
