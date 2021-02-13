@@ -1,31 +1,24 @@
 # Operating system VH-DOS
 
-# 1. Developers:
+### Developers Team
+* Sasha Volohov — *bootloader, command line, kernel*
+* Anton Fedorov — *core*
+* Larry Holst - *temporary moderator and editor*
 
-Sasha Volohov (bootloader, command line, kernel)
-Anton Fedorov (core)
+### To-Do
+New ideas will be considered by moderators
+- [ ] Code setup disk for OS, use compression algorithms
+- [ ] Code library for using FAT32
+- [ ] Code program for creating/displaying PGM files
+- [ ] Option of creating backup diskette on setup process
+- [ ] Option of system restoring (if the system parts will be damaged)
+- [ ] User access control system, similar to Linux
+- [ ] `raa` command - full administrator access
+- [ ] ACPI commands: `shutdown`, `restart`
+- [ ] Do a global bootloader upgrade
 
-# 2. Ideas for VH-DOS:
-
-Add your idea here!
-
-- Write file system [Not completed]
-- Make a program for creating / displaying PGM files [Not completed]
-- Live diskette in the installer [Not completed]
-- Restore System [Not completed]
-- User system [Not completed]
-- The raa command (similar to sudo on Linux) [Not completed]
-- Commands shutdown, restart [Not completed]
-- Global bootloader update [Not completed]
-
-# 3. Statistics:
-
-The system weighs 3072 bytes (3 KB, 6 sectors)
-Of them:
-
-Loader - 1024 bytes (1 KB, 2 sectors [MBR + 2 sectors])
-Kernel - 2048 bytes (2 KB, 4 sectors)
-
-# 4. How to assemble VH-DOS?
-
-Very simple. Run the build.bat file, and the disk.img file (diskette) will appear in the root next to fasm.exe and the VM will start.
+### Statistics
+| Part of OS | Size in bytes |
+| :--------- | ------------: |
+| Bootloader | 1024B |
+| Kernel | 2048B |
