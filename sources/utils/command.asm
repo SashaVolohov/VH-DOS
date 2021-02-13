@@ -1,4 +1,4 @@
-org 600h
+	org 600h
 
 message:
 	mov bp,text_disk
