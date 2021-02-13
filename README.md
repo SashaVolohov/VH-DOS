@@ -3,7 +3,7 @@
 ### Developers Team
 * Sasha Volohov — *bootloader, command line, kernel*
 * Anton Fedorov — *core*
-* Larry Holst - *temporary moderator and editor*
+* Larry Holst — *temporary moderator and editor*
 
 ### To-Do
 New ideas will be considered by moderators
