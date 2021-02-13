@@ -4,7 +4,7 @@
 ; Данный файл служит для запуска установщика ОС.
 ; Этот файл находится в загрузочном секторе дискеты. Загружается по адресу 0000:7C00
 
-	org 7c00h
+	org 7C00h
 
 start:
 	cli
@@ -15,11 +15,11 @@ start:
 	mov sp,07C00h
 	sti
 
-	mov ax, 0002h
+	mov ax,0002h
 	int 10h
 	
 	mov bp,fail_ldr
-	mov cx, 18
+	mov cx,18
 	
 	call PrintMes
 	
@@ -30,25 +30,27 @@ start:
 	int 10h
 	
 	mov bp,fail_ldr_two
-	mov cx, 29
+	mov cx,29
 	
 	call PrintMes
 	
-	mov ax,0000h
-	mov es,ax
-	mov bx,500h
+	xor ax,ax
+	; mov es,ax ; заменено
+	xor es,es
+	
+	mov bx,00500h
 	mov ch,0
-	mov cl,02h
+	mov cl,2
 	mov dh,0
-	mov	dl,0h
-	mov al,01h
-	mov ah,02h
+	mov dl,0
+	mov al,1
+	mov ah,2
 	int 13h
 	jmp 0000:0500h
 	
 	call ClearMes
 	
-	mov ah,02h
+	mov ah,2
 	mov bh,0
 	mov dh,2
 	mov dl,0
