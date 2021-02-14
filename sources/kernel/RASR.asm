@@ -1,19 +1,13 @@
-; Операционная система VH-DOS
-; © Антон Фёдоров, 2019-2021.
-
-; Данный файл является частью ядра VH-DOS!
-; Этот файл содержит команду "Сбросить все сегментные регистры".
-
 RASR:
 ; Сбросить все сегментные регистры
 
-	push word 0
-	push word 0
-	push word 0
-	pop cs
-	pop ds
-	pop ss
-	pop es
-	pop fs
-	pop gs
+	push word 0 ; byte 0x00, byte 0x00}-1st group
+	push word 0 ; byte 0x00, byte 0x00}-2nd group
+	push word 0 ; byte 0x00, byte 0x00}-3rd group
+	pop cs ; byte 0x00}\
+	pop ds ; byte 0x00}/1st group
+	pop ss ; byte 0x00}\
+	pop es ; byte 0x00}/2nd group
+	pop fs ; byte 0x00}\
+	pop gs ; byte 0x00}/3rd group
 	ret
