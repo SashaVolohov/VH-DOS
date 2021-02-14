@@ -1,35 +1,25 @@
-; Операционная система VH-DOS
-; © Антон Фёдоров, 2019-2021.
-
-; Данный файл является частью ядра VH-DOS.
-; Этот файл содержит процедуру "Побайтовый ревёрсер".
-
 BytR:
-; Побайтовый ревёрсер
+; РџРѕР±Р°Р№С‚РѕРІС‹Р№ СЂРµРІС‘СЂСЃРµСЂ
 
-; AX должен содержать шестнадцетиричный код,
-; над которым будет производится работа!
+; AX РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С€РµСЃС‚РЅР°РґС†РµС‚РёСЂРёС‡РЅС‹Р№ РєРѕРґ,
+; РЅР°Рґ РєРѕС‚РѕСЂС‹Рј Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ СЂР°Р±РѕС‚Р°!
 
-	push bx
-	push cx
-	push dx
-	xchg al, ah
-	mov bh, ah
-	mov bl, al
-	mov ah, al
-	shl ah, 4
-	shr al, 4
-	or ah, al
-	mov dh, ah
-	mov ah, bh
-	mov al, ah
-	shl ah, 4
-	shr al, 4
-	or ah, al
-	mov dl, ah
-	mov ax, dx
-	xchg ah, al
-	pop dx
-	pop cx
-	pop bx
+	push bx cx dx
+	xchg al,ah
+	mov bh,ah
+	mov bl,al
+	mov ah,al
+	shl ah,4
+	shr al,4
+	or ah,al
+	mov dh,ah
+	mov ah,bh
+	mov al,ah
+	shl ah,4
+	shr al,4
+	or ah,al
+	mov dl,ah
+	mov ax,dx
+	xchg ah,al
+	pop dx cx bx
 	ret
