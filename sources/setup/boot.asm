@@ -36,7 +36,7 @@ start:
 	
 	xor ax,ax
 	; mov es,ax ; заменено
-	xor es,es
+	mov es,0
 	
 	mov bx,00500h
 	mov ch,0
