@@ -1,9 +1,9 @@
 # Operating system VH-DOS
 
 ### Developers Team
-* Sasha Volohov — *bootloader, command line, kernel*
-* Anton Fedorov — *core*
-* Larry Holst — *temporary moderator and editor*
+* [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel*
+* Anton Fedorov — *core, ver. 0.9beta*
+* [Larry Holst](https://github.com/Diicorp95) — *temporary moderator and editor*
 
 ### To-Do
 New ideas will be considered by moderators
