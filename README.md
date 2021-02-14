@@ -10,7 +10,7 @@
 ### Developers Team
 * [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel*
 * Anton Fedorov — *core, ver. 0.9beta*
-* [Larry Holst](https://github.com/Diicorp95) — *temporary moderator and editor*
+* [Larry Holst](https://github.com/Diicorp95) — *README.md, LICENSE, editing and creating*
 
 ### To-Do
 New ideas will be considered by moderators
