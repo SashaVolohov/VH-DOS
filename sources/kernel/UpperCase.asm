@@ -28,6 +28,7 @@ UpperCase@01:
 UpperCase@02: ; just add
 	push bp
 	mov bp,bx
+	dec bp
 	mov [si+bp],al
 	pop bp
 	jmp UpperCase@01
@@ -35,6 +36,7 @@ UpperCase@03: ; process, add
 	sub al,32
 	push bp
 	mov bp,bx
+	dec bp
 	mov [si+bp],al
 	pop bp
 	jmp UpperCase@01
