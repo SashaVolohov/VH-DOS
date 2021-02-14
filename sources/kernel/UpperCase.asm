@@ -41,4 +41,9 @@ UpperCase@03: ; process, add
 	pop bp
 	jmp UpperCase@01
 UpperCase@exit:
+	push bp
+	mov bp,bx
+	dec bp
+	mov [si+bp],0
+	pop bp
 	ret
