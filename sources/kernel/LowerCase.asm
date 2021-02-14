@@ -9,7 +9,7 @@ LowerCase:
 ; если ASCII-код символа < 123, это буква в нижнем регистре.
 	mov si,bp
 	xor bx,bx
-UpperCase@01:
+LowerCase@01:
 	cmp bx,0FFFFh
 	jz LowerCase@exit
 	push bp
