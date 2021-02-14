@@ -16,6 +16,7 @@ ACPI_Shutdown:
 	int 15h
 	mov ax,530Eh
 	mov bx,0
+	push word 0
 	pop cx
 	int 15h
 	mov ax,530Dh
