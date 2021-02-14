@@ -3,7 +3,10 @@ ReserveByte:
 
 ; AX - шестнадцетиричный код.
 ; Выход: AX
-	xchg al,ah
+	; xchg al,ah (/* 3)
+	xor al,ah
+	xor ah,al
+	xor al,ah
 	mov bh,ah
 	mov bl,al
 	mov ah,al
@@ -18,5 +21,8 @@ ReserveByte:
 	or ah,al
 	mov dl,ah
 	mov ax,dx
-	xchg ah,al
+	; xchg ah,al (/* 3)
+	xor ah,al
+	xor al,ah
+	xor ah,al
 	ret
