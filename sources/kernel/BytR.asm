@@ -1,10 +1,8 @@
-BytR:
-; Побайтовый ревёрсер
+ReserveByte:
+; Побайтовый переворотчик задом наперёд
 
-; AX должен содержать шестнадцетиричный код,
-; над которым будет производится работа!
-
-	push bx cx dx
+; AX - шестнадцетиричный код.
+; Выход: AX
 	xchg al,ah
 	mov bh,ah
 	mov bl,al
@@ -21,5 +19,4 @@ BytR:
 	mov dl,ah
 	mov ax,dx
 	xchg ah,al
-	pop dx cx bx
 	ret
