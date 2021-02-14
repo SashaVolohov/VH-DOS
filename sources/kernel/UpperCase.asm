@@ -14,7 +14,8 @@ UpperCase@01:
 	jz UpperCase@exit
 	push bp
 	mov bp,bx
-	mov al,[si+bp]
+	add bp,si
+	mov al,[bp]
 	pop bp
 	cmp al,0
 	jz UpperCase@exit
@@ -28,22 +29,25 @@ UpperCase@01:
 UpperCase@02: ; just add
 	push bp
 	mov bp,bx
+	add bp,si
 	dec bp
-	mov [si+bp],al
+	mov [bp],al
 	pop bp
 	jmp UpperCase@01
 UpperCase@03: ; process, add
 	sub al,32
 	push bp
 	mov bp,bx
+	add bp,si
 	dec bp
-	mov [si+bp],al
+	mov [bp],al
 	pop bp
 	jmp UpperCase@01
 UpperCase@exit:
 	push bp
 	mov bp,bx
+	add bp,si
 	dec bp
-	mov [si+bp],0
+	mov [bp],0
 	pop bp
 	ret
