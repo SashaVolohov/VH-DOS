@@ -46,9 +46,17 @@ echo Compiling: %cd%\%src_stp%\boot.asm
 echo:
 
 rem Making floppy disk image
+md %src_tmp%
 %fasm% %srcs%\compile.asm
-::del disk.img
-::copy %src_tmp%\zero.ima %cd%\disk.img
-::%p2dd% if=VH-DOS/compile.bin of=disk.img conv=notrunc
+del disk.img
+copy %src_tmp%\zero.ima %cd%\disk.img
+%p2dd% if=VH-DOS/compile.bin of=disk.img conv=notrunc
+del %srcs%\*.bin
+del %src_boot%\*.bin
+del %src_krn%\*.bin
+del %src_cmds%\*.bin
+del %src_stp%\*.bin
+del %src_tmp%\zero.img
+rd %src_tmp%
 
 pause> nul
