@@ -1,4 +1,11 @@
 # Operating system VH-DOS
+### System Requirements
+| System Component | At least this |
+| :--------------- | ------------: |
+| CPU | 186 |
+| FPU | not required |
+| Video Adapter | MDA/CGA/EGA |
+| Hard disk capacity | 4 Kilobytes |
 
 ### Developers Team
 * [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel*
