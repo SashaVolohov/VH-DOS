@@ -15,7 +15,7 @@ UpperCase@01:
 	push bp
 	mov bp,bx
 	add bp,si
-	mov al,[bp]
+	mov al,byte [bp]
 	pop bp
 	cmp al,0
 	jz UpperCase@exit
@@ -31,7 +31,7 @@ UpperCase@02: ; just add
 	mov bp,bx
 	add bp,si
 	dec bp
-	mov [bp],al
+	mov byte [bp],al
 	pop bp
 	jmp UpperCase@01
 UpperCase@03: ; process, add
@@ -40,7 +40,7 @@ UpperCase@03: ; process, add
 	mov bp,bx
 	add bp,si
 	dec bp
-	mov [bp],al
+	mov byte [bp],al
 	pop bp
 	jmp UpperCase@01
 UpperCase@exit:
@@ -48,6 +48,6 @@ UpperCase@exit:
 	mov bp,bx
 	add bp,si
 	dec bp
-	mov [bp],0
+	mov byte [bp],0
 	pop bp
 	ret
