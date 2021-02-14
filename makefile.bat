@@ -9,22 +9,46 @@ set src_stp=sources\setup
 set src_tmp=sources\tmp
 
 rem Compiling OS
+echo Compiling: %cd%\%src_boot%\boot.asm
 %fasm% %src_boot%\boot.asm
+echo:
+
+echo Compiling: %cd%\%src_boot%\DOSLDR.asm
 %fasm% %src_boot%\DOSLDR.asm
+echo:
+
+echo Compiling: %cd%\%src_krn%\FHTA.ASM
 %fasm% %src_krn%\FHTA.ASM
+echo:
+
+echo Compiling: %cd%\%src_krn%\PDWFEDX.asm
 %fasm% %src_krn%\PDWFEDX.asm
+echo:
+
+echo Compiling: %cd%\%src_krn%\BytR.asm
 %fasm% %src_krn%\BytR.asm
+echo:
+
+echo Compiling: %cd%\%src_krn%\RASR.asm
 %fasm% %src_krn%\RASR.asm
+echo:
+
+echo Compiling: %cd%\%src_cmds%\command.asm
 %fasm% %src_cmds%\command.asm
+echo:
+
+echo Compiling: %cd%\%src_cmds%\cls.asm
 %fasm% %src_cmds%\cls.asm
+echo:
+
+echo Compiling: %cd%\%src_stp%\boot.asm
 %fasm% %src_stp%\boot.asm
-%fasm% %src_stp%\DOSLDR.asm
-%fasm% %src_stp%\finish.asm
+echo:
 
 rem Making floppy disk image
 %fasm% %srcs%\compile.asm
-del disk.img
-copy %src_tmp%\zero.ima %cd%\disk.img
-%p2dd% if=VH-DOS/compile.bin of=disk.img conv=notrunc
+::del disk.img
+::copy %src_tmp%\zero.ima %cd%\disk.img
+::%p2dd% if=VH-DOS/compile.bin of=disk.img conv=notrunc
 
 pause> nul
