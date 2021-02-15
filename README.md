@@ -6,6 +6,7 @@
 | FPU | not required |
 | Video Adapter | MDA/CGA/EGA |
 | Hard disk capacity | 4 Kilobytes |
+| PC Speaker | Preferably to have |
 
 ### Developers Team
 * [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel*
