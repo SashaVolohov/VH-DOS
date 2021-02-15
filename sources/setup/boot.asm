@@ -237,5 +237,5 @@ setup_progress db 'Setup is copying files...',0
 setup_error db 'Disk I/O error, can',27h,'t continue.',0
 setup_complete db 'Setup completed. Eject the floppy disk and press any key to reboot computer.',0
 ;----
-times ((512*3)-2-($-07C00h)) db 0
+times ((512)-2-($-07C00h)) db 0
 db 055h,0AAh
