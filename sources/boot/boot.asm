@@ -76,4 +76,4 @@ ClearMes:
 fail_ldr db 'DOSLDR is missing.',0
 fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart',0
 times(512-2-($-07C00h)) db 0
-db 055h,0AAh
+db 055h,0AAh ; Label that diskette is bootable
