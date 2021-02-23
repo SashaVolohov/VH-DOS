@@ -15,27 +15,23 @@ start:
 	mov sp,07C00h
 	sti
 	
-	mov ax, 0002h
+	mov ax,2
 	int 10h
 	mov ah,2
 	mov bh,0
-	; xor dx,dx ; Не требуется
+	xor dx,dx
 	int 10h
 
 	mov bp,fail_ldr
-	mov cx,18
-
-	call print_mes
+	call TxtPrint
 
 	mov ah,2
 	mov bh,0
-	mov dh,1
-	mov dl,0
+	mov dh,00100h
 	int 10h
 
 	mov bp,fail_ldr_two
-	mov cx,29
-	call print_mes
+	call TxtPrint
 
 	mov ax,0
 	mov es,ax
@@ -47,7 +43,7 @@ start:
 	mov al,1
 	mov ah,2
 	int 13h
-	jmp 0000:0500h
+	jmp 00000:00500h
 	call ClearMes
 	
 	mov ah,2
@@ -58,20 +54,52 @@ start:
 	
 	jmp $
 	
-print_mes:
-	mov bl,07h					
-	xor bh,bh
-	mov ax,1301h
+TxtPrint:
+	mov si,bp
+	xor bx,bx
+TxtPrint@01:
+	cmp bx,0FFFFh
+	jz TxtPrint@02
+	push bx
+	mov bp,bx
+	mov al,[si+bp]
+	pop bx
+	cmp al,0
+	jz TxtPrint@02
+	mov [TxtPrint_Data01],al
+	push ax bx si bp
+	mov ah,0Ah
+	xor bx,bx
+	mov cx,1
+	mov al,[TxtPrint_Data01]
 	int 10h
-	mov si,0
+	pop bp si bx ax
+	mov ah,03h
+	xor bx,bx
+	int 10h
+	mov ah,02h
+	xor bx,bx
+	inc dl
+	int 10h
+	pop bx
+	inc bx
+	jmp TxtPrint@01
+TxtPrint_Data01 db 0
+TxtPrint@02:
+	xor bx,bx
+	xor bp,bp
+	xor si,si
+	xor ax,ax
 	ret
 		
 ClearMes:
-	mov bp,0
+	mov ah,6
+	mov al,0
+	mov bh,7
 	mov cx,0
-	call print_mes
+	mov dx,2000d
+	int 10h
 	ret
-	
 ;----
 fail_ldr db 'DOSLDR is missing.',0
 fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
