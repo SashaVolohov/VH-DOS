@@ -6,6 +6,8 @@
 
 org 7c00h
 
+FAT12_Bootable_Disk_Directive equ 055h,0AAh
+
 start:
 	cli
 	xor ax,ax
@@ -74,6 +76,6 @@ ClearMes:
 	
 ;----
 fail_ldr db 'DOSLDR is missing.',0
-fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart',0
-times(512-2-($-07C00h)) db 0
-db 055h,0AAh ; Label that diskette is bootable
+fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
+db 512 - FAT12_Bootable_Disk_Directive - start dup (0)
+db FAT12_Bootable_Disk_Directive
