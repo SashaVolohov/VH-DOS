@@ -14,19 +14,27 @@ Command:
         jz Delete_symbol
         cmp al,0Dh
         jz Input_Command
+	cmp al,32d
+	jae CheckForPrintableRange
+	jmp Command
+CheckForPrintableRange:	
+	cmp al,126d
+	jle AddToBuffer
+	jmp Command
+AddToBuffer:	
         mov [string+si],al
         inc si
-        mov ah,09h
-        mov bx,0007h
+        mov ah,9
+        mov bx,7
         mov cx,1
         int 10h
 	add dl,1
-        mov ah,02h
+        mov ah,2h
 	int 10h
  	jmp Command
-	; jmp BSOD
-	;   Сюда мы никогда не попадём, если только где-нибудь не указан шестнадцетиричный адрес на эту инструкцию,
-	;   потому   что   "слишком   далеко    находится    начало     процедуры BSOD,    дабы   прыгнуть    туда"
+	; jmp BSOD <
+	;  > Сюда мы никогда не попадём, если только где-нибудь не указан шестнадцетиричный адрес на эту инструкцию,
+	;  > потому   что   "слишком   далеко    находится    начало     процедуры BSOD,    дабы   прыгнуть    туда"
 
 Input_Command:
 	add dh,1
