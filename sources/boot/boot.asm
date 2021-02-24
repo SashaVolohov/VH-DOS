@@ -27,7 +27,7 @@ start:
 
 	mov ah,2
 	mov bh,0
-	mov dh,00100h
+	mov dx,00100h
 	int 10h
 
 	mov bp,fail_ldr_two
