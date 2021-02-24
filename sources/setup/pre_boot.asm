@@ -14,12 +14,24 @@ start:
 	xor dx,dx
 	mov bx,07E00h
 	int 13h
-	mov ax,word ptr [07E00h]
+	mov ax,word ptr [07E00h+20d+3d]
 	cmp ax,OurSignature
+	jz Jump_To_Real_Bootloader
+	mov ax, 40h
+	push ax
+	pop ds
+	mov word ptr ds:72h,0
+	mov ax,0FFFFh
+	push ax
+	xor ax,ax
+	push ax
+	ret
+Jump_To_Real_Bootloader:	
 	push word 0 ; Переход на 0000:7E000,
 	push 07E00h ; где и начинается полезный
 	retf        ; загрузчик
 
-file 'oursignature.dat':0,2
+OurSignature: file 'oursignature.dat':0,2
+	
 times (512 - 2 - (07C00h - $)) db 0
 db 055h,0AAh
