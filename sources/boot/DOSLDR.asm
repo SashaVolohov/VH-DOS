@@ -44,13 +44,13 @@ message:
 	
 	mov ax,2
 	int 10h
-		
+
 	mov ah,2
 	mov bh,0
 	mov dh,0
 	mov dl,0
 	int 10h
-		
+
 	jmp 0000:0600h	
 	jmp $ ; Возможно, никогда досюда процесс не дойдёт
 
