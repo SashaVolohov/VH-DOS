@@ -49,7 +49,7 @@ rem Making floppy disk image
 %fasm% %srcs%\compile.asm
 del disk.img
 copy %srcs%\1440.ima %cd%\disk.img
-%p2dd% if=VH-DOS/compile.bin of=disk.img conv=notrunc
+%p2dd% if=VH-DOS/compile.bin of=disk.img
 del %srcs%\*.bin
 del %src_boot%\*.bin
 del %src_krn%\*.bin
