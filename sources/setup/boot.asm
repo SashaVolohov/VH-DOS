@@ -9,8 +9,7 @@
 start:
 	cli
 	push qword 0
-	push qword 0
-	pop cs
+	push dword 0
 	pop ds
 	pop es
 	pop ss
