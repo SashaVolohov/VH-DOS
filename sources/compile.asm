@@ -9,11 +9,14 @@
 ; ` align 512
 ; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
+	org 7C00h
+	
 MACRO zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
 }
 HEADS = 1
 SPT = 7
+Diskette_Size equ 1474560;bytes
 
 begin:	
 	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик
@@ -29,4 +32,6 @@ begin:
 	zerobytes 512
 	file "utils\cls.bin" ; команда "help"
 	zerobytes 512
-	align HEADS*SPT*512
+	zerobytes HEADS*SPT*512
+	
+times (Diskette_Size - ($ - 07C00h)) db 0
