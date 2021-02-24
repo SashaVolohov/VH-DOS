@@ -1,6 +1,6 @@
 ; include "../macros.asm"
 
-MACRO zero_segment {
+MACRO ClearStack {
 	push qword 0
 	push qword 0
 	pop cs
