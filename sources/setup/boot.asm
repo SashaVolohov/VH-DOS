@@ -39,8 +39,7 @@ start:
 	mov bx,Step2
 	mov ch,0
 	mov cl,2
-	mov dh,0
-	mov dl,0
+	xor dx,dx
 	mov al,1
 	mov ah,2
 	int 13h
