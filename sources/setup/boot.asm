@@ -16,6 +16,10 @@ start:
 	pop ss
 	mov sp,07C00h
 	sti
+	
+	jmp overjump_01
+OurSignature: file 'oursignature.dat':0,2
+overjump_01:
 
 	mov ax,2
 	int 10h
@@ -137,9 +141,9 @@ Step2:
 	int 10h
 	
 	mov ah,10h
-    int 16h
+	int 16h
 	cmp al,0Dh
-    jz install
+	jz install
 	jmp start
 	
 install:
@@ -198,13 +202,13 @@ install:
 	mov ch,0
 	mov cl,4
 	mov dh,0
-	mov	dl,80h
+	mov dl,80h
 	mov al,1
 	mov ah,3
 	int 13h
 	
 	mov ax,2
-    int 10h
+	int 10h
 	
 	mov ah,02h
 	mov bh,0
@@ -236,4 +240,3 @@ setup_welcome_2 db 'Press Enter to start the installation.',0
 setup_progress db 'Setup is copying files...',0
 setup_error db 'Disk I/O error, can',27h,'t continue.',0
 setup_complete db 'Setup completed. Eject the floppy disk and press any key to reboot computer.',0
-;----
