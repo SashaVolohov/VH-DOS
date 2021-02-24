@@ -9,35 +9,24 @@
 ; ` align 512
 ; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
-MACRO align value {
-	db value - 1 - ($ + value - 1) mod (value) dup 0
+MACRO zerobytes length {
+	db length - 1 - ($ + length - 1) mod (length) dup 0
 }
 HEADS = 1
 SPT = 7
-begin:
-	; file "boot\boot.bin",512 ; Первый загрузчик (MBR)
-	; file "boot\DOSLDR.bin" ; Второй загрузчик (DOSLDR)
-	; align 512
-	; file "kernel\FHTA.bin" ; Функция:  Перевести HEX в ASCII
-	; align 512
-	; file "kernel\PDWFEDX.bin" ; Функция: Печатать двойное слово из EDX
-	; align 512
-	; file "kernel\BytR.bin" ; Функция: Перевернуть байты в AХ задом наперёд
-	; align 512
-	; file "kernel\RASR.bin" ; Функция:  Сброс всех сегметных регистров
-	; align 512
-	; align HEADS*SPT*512
-	
+
+begin:	
 	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик
-	;file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
-	;align 512
+	;>1>; file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
+	;>1>; zerobytes 512
+	file "setup\strings.asm"
 	file "boot\boot.bin",512 ; Загрузчик
 	file "boot\DOSLDR.bin" ; DOSLDR
-	align 512
-	;file "setup\install.bin" ; Этот файл запускается после установки
-	align 512
+	zerobytes 512
+	;>2>; file "setup\install.bin" ; Этот файл запускается после установки
+	zerobytes 512
 	file "utils\command.bin" ; COMMAND.SYS
-	align 512
+	zerobytes 512
 	file "utils\cls.bin" ; команда "help"
-	align 512
+	zerobytes 512
 	align HEADS*SPT*512
