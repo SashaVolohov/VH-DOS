@@ -1,4 +1,4 @@
-        org 800h
+        org 00800h
         
 message:
         mov ah,6
