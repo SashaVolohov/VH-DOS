@@ -4,7 +4,7 @@
 ; Данный файл служит для установки ОС.
 ; Загружается по адресу 0000:7E00
 
-	org 7C00h; для BIN
+	org 07C00h; для BIN
 
 start:
 	cli
@@ -48,8 +48,7 @@ start:
 	
 	mov ah,2
 	mov bh,0
-	mov dh,2
-	mov dl,0
+	mov dh,00200h
 	int 10h
 	
 TxtPrint:
