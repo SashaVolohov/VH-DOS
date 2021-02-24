@@ -19,7 +19,8 @@ SPT = 7
 Diskette_Size equ 1474560;bytes
 
 begin:	
-	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик
+	file "setup\pre_boot.bin",512 ; Для следующего загрузчика
+	file "setup\boot.bin" ; Первый загрузчик (MBR) установщик > 512 байт
 	;>1>; file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
 	;>1>; zerobytes 512
 	file "setup\strings.asm"
