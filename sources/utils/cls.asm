@@ -14,4 +14,4 @@ message:
         mov dl,0
         int 10h
         
-        jmp 0000h:0600h
+        jmp 00000h:00600h
