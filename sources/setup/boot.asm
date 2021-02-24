@@ -2,9 +2,9 @@
 ; © Саша Волохов, 2020-2021.
 
 ; Данный файл служит для установки ОС.
-; Этот файл находится в загрузочном секторе дискеты. Загружается по адресу 0000:7C00
+; Загружается по адресу 0000:7E00
 
-	org 7C00h
+	org 7C00h; для BIN
 
 start:
 	cli
@@ -237,5 +237,3 @@ setup_progress db 'Setup is copying files...',0
 setup_error db 'Disk I/O error, can',27h,'t continue.',0
 setup_complete db 'Setup completed. Eject the floppy disk and press any key to reboot computer.',0
 ;----
-times ((512)-2-($-07C00h)) db 0
-db 055h,0AAh
