@@ -8,9 +8,13 @@
 
 start:
 	cli
-	push qword 0
-	push dword 0
-	pop ds
+	push 0 ; 2 bytes \
+	push 0 ; 2 bytes /- 4 bytes
+	push 0 ; 2 bytes \
+	push 0 ; 2 bytes /- 4 bytes
+	push 0 ; 2 bytes \
+	push 0 ; 2 bytes /- 4 bytes
+	pop ds 
 	pop es
 	pop ss
 	mov sp,07C00h
