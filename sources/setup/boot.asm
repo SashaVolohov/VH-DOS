@@ -8,10 +8,12 @@
 
 start:
 	cli
-	xor ax,ax
-	mov ds,ax
-	mov es,ax
-	mov ss,ax
+	push dword 0
+	push dword 0
+	pop cs
+	pop ds
+	pop es
+	pop ss
 	mov sp,07C00h
 	sti
 
