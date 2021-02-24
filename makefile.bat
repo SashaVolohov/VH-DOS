@@ -7,18 +7,18 @@ set src_cmds=sources\utils
 set src_stp=sources\setup
 
 rem Compiling OS
-%fasm% %src_boot%\*.asm
-%fasm% %src_krn%\*.asm
-%fasm% %src_cmds%\*.asm
-%fasm% %src_stp%\*.asm
+for %%a in (%src_boot%\*.asm) do %fasm% %%~a
+for %%a in (%src_krn%\*.asm) do %fasm% %%~a
+for %%a in (%src_cmds%\*.asm) do %fasm% %%~a
+for %%a in (%src_stp%\*.asm) do %fasm% %%~a
 
 rem Making floppy disk image
 %fasm% %srcs%\compile.asm
-copy %srcs%\compile.bin %cd%\setup.img
-del %srcs%\*.bin
-del %src_boot%\*.bin
-del %src_krn%\*.bin
-del %src_cmds%\*.bin
-del %src_stp%\*.bin
+copy %srcs%\compile.bin %cd%\setup.img> nul
+del %srcs%\*.bin> nul
+del %src_boot%\*.bin> nul
+del %src_krn%\*.bin> nul
+del %src_cmds%\*.bin> nul
+del %src_stp%\*.bin> nul
 
 pause> nul
