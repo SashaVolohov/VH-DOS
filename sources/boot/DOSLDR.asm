@@ -3,7 +3,7 @@
 
 ; Данный файл служит для запуска ОС, и загружает основные программы в память.
 
-	org 500h
+	org 00500h
 	
 message:
 	mov ax,2
@@ -22,13 +22,13 @@ message:
 	push word 0
 	pop es
 
-	mov bx,800h
+	mov bx,00800h
 	mov ch,0
-	mov cl,04h
+	mov cl,4
 	mov dh,0
-	mov dl,80h
-	mov al,01h
-	mov ah,02h
+	mov dl,080h
+	mov al,1
+	mov ah,2
 	int 13h
 
 	xor ax,ax
