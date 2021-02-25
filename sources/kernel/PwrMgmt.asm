@@ -1,3 +1,7 @@
+	org 07C00h
+
+BSOD		equ 
+
 ACPI_Shutdown:
 ; Выключение компьютера через ACPI интерфейс
 	mov ax,5300h
@@ -40,8 +44,7 @@ ACPI_Shutdown:
 	jc ACPI_Shutdown@ThrowError
 	ret
 ACPI_Shutdown@ThrowError:
-	int 03h
-	ret
+	jmp BSOD
 Restart:
 ; Тёплая перезагрузка компьютера
 	mov ax, 40h

@@ -4,29 +4,27 @@
 ; Данный файл служит для установки ОС.
 ; Загружается по адресу 0000:7E00
 
-	org 07C00h; для BIN
+	org 07C00h
 
 start:
-	;;RC;;mov ax,3
-	;;RC;;int 10h
-	
+	mov ax,2
+	int 10h
+
 	mov bp,fail_ldr
 	call TxtPrint
+
+	mov ah,2
+	mov bh,0
+	mov dx,00100h
+	int 10h
 	
-	;;RC;;mov ah,02h
-	;;RC;;mov bh,0
-	;;RC;;mov dh,1
-	;;RC;;mov dl,0
-	;;RC;;int 10h
-	
-	;;RC;;mov bp,ctrlaltdel_msg
-	;;RC;;call TxtPrint
-	
-	xor ax,ax
+	mov bp,ctrlaltdel_msg
+	call TxtPrint
+
+	; xor ax,ax
 	; mov es,ax ; заменено
 	
-	;mov bx,00500h
-	mov bx,Step2
+	mov bx,Step2 ; was 00500h
 	mov ch,0
 	mov cl,2
 	mov dh,0
@@ -35,15 +33,15 @@ start:
 	mov ah,2
 	int 13h
 	jmp Step2
-	
-	;;RC;;call ClearScreen
-	
-	;;RC;;mov ah,2
-	;;RC;;mov bh,0
-	;;RC;;mov dh,2
-	;;RC;;mov dl,0
-	;;RC;;int 10h
-	
+
+	call ClearScreen
+
+	mov ah,2
+	mov bh,0
+	mov dh,2
+	mov dl,0
+	int 10h
+
 TxtPrint:
 	mov si,bp
 	xor bx,bx
@@ -58,15 +56,14 @@ TxtPrint@01:
 	mov [TxtPrint_counter],bx
 	mov ah,09h
 	mov al,[TxtPrint_Data01]
-	mov bh,0
-	mov bl,07h
+	mov bx,7
 	mov cx,1
 	int 10h
-	mov ah,03h
-	xor bx,bx
+	mov ah,3
+	mov bh,0
 	int 10h
-	mov ah,02h
-	xor bx,bx
+	mov ah,2
+	mov bh,0
 	inc dl
 	int 10h
 	mov bx,TxtPrint_counter
@@ -81,7 +78,6 @@ TxtPrint@02:
 	xor ax,ax
 	ret
 
-
 ClearScreen:
 	mov ah,06h
 	xor cx,cx
@@ -92,41 +88,41 @@ ClearScreen:
 	ret
 	
 Step2:	
-	;;RC;;mov ax,2
-	;;RC;;int 10h
+	mov ax,2
+	int 10h
 	
-	;;RC;;mov ah,2
-	;;RC;;mov bh,0
-	;;RC;;mov dh,0
-	;;RC;;mov dl,0
-	;;RC;;int 10h
+	mov ah,2
+	mov bh,0
+	mov dh,0
+	mov dl,0
+	int 10h
 	
-	;;RC;;mov bp,setup_welcome
-	;;RC;;call TxtPrint
+	mov bp,setup_welcome
+	call TxtPrint
 	
-	;;RC;;mov ah,2
-	;;RC;;mov bh,0
-	;;RC;;mov dh,2
-	;;RC;;mov dl,0
-	;;RC;;int 10h
+	mov ah,2
+	mov bh,0
+	mov dh,2
+	mov dl,0
+	int 10h
 	
-	;;RC;;mov bp,setup_welcome_2
-	;;RC;;call TxtPrint
+	mov bp,setup_welcome_2
+	call TxtPrint
 	
-	;;RC;;mov ah,2
-	;;RC;;mov bh,0
-	;;RC;;mov dh,3
-	;;RC;;mov dl,0
-	;;RC;;int 10h
+	mov ah,2
+	mov bh,0
+	mov dh,3
+	mov dl,0
+	int 10h
 	
-	;;RC;;mov bp,ctrlaltdel_msg
-	;;RC;;call TxtPrint
+	mov bp,ctrlaltdel_msg
+	call TxtPrint
 	
-	;;RC;;mov ah,2
-	;;RC;;mov bh,0
-	;;RC;;mov dh,5
-	;;RC;;mov dl,0
-	;;RC;;int 10h
+	mov ah,2
+	mov bh,0
+	mov dh,5
+	mov dl,0
+	int 10h
 	
 	mov ah,10h
     int 16h
@@ -195,20 +191,20 @@ install:
 	mov ah,3
 	int 13h
 	
-	;;RC;;mov ax,2
-    ;;RC;;int 10h
+	mov ax,2
+    int 10h
 	
-	;;RC;;mov ah,02h
-	;;RC;;mov bh,0
-	;;RC;;mov dh,0
-	;;RC;;mov dl,0
-	;;RC;;int 10h
+	mov ah,02h
+	mov bh,0
+	mov dh,0
+	mov dl,0
+	int 10h
 	
-	;;RC;;mov bp,setup_complete
-	;;RC;;call TxtPrint
+	mov bp,setup_complete
+	call TxtPrint
 	
-	;;RC;;mov ah,10h
-    ;;RC;;int 16h
+	mov ah,10h
+    int 16h
 	
 	mov ax,40h
 	push ax
@@ -227,4 +223,3 @@ setup_welcome_2 db 'Press Enter to start the installation.',0
 setup_progress db 'Setup is copying files...',0
 setup_error db 'Disk I/O error, can',27h,'t continue.',0
 setup_complete db 'Setup completed. Eject the floppy disk and press any key to reboot computer.',0
-;----

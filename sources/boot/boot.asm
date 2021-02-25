@@ -4,7 +4,7 @@
 ; Данный файл служит для запуска ОС.
 ; Этот файл находится в MBR дискеты/жёсткого диска. Загружается по адресу 0000:7C00
 
-	org 7C00h
+	org 07C00h
 
 start:
 	cli
@@ -91,7 +91,7 @@ TxtPrint@02:
 	xor si,si
 	xor ax,ax
 	ret
-		
+
 ClearMes:
 	mov ah,6
 	mov al,0
@@ -103,5 +103,6 @@ ClearMes:
 ;----
 fail_ldr db 'DOSLDR is missing.',0
 fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
+;----
 times(512-2-($-07C00h)) db 0 ; OLD
 db 055h,0AAh; FAT12 bootable medium

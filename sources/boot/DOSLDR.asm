@@ -3,21 +3,21 @@
 
 ; Данный файл служит для запуска ОС, и загружает основные программы в память.
 
-	org 500h
-	
+	org 00500h
+
 message:
 	mov ax,2
 	int 10h
-        
+
 	mov bp,start_dos
 	call TxtPrint
-		
+
 	mov ah,2
 	mov bh,0
 	mov dh,2
 	mov dl,0
 	int 10h
-
+	
 	xor ax,ax
 	push word 0
 	pop es
@@ -41,7 +41,7 @@ message:
 	mov al,1
 	mov ah,2
 	int 13h
-	
+
 	mov ax,2
 	int 10h
 
@@ -91,6 +91,6 @@ TxtPrint@02:
 	xor si,si
 	xor ax,ax
 	ret
-
+;----
 start_dos db 'Starting VH-DOS...',0
 error_start db 'Cannot find COMMAND.SYS',0

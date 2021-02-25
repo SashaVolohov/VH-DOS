@@ -24,9 +24,9 @@ start:
 	mov ss,ax
 	mov sp,07C00h
 	sti
-	
+
 	;jmp 0FFFFh:00000h
-	
+
 	mov ah,2
 	mov al,1
 	mov ch,0
@@ -35,7 +35,7 @@ start:
 	mov dl,0
 	mov bx,07E00h
 	int 13h
-	
+
 	push word 0 ; Переход на 0000:7E000,
 	push 07E00h ; где и начинается полезный
 	retf        ; загрузчик
