@@ -1,2 +1,0 @@
-0000:7C00: boot/boot.asm
-0000:7E00: boot/DOSLDR.asm
