@@ -1,4 +1,4 @@
-        org 00800h
+        org 800h
         
 message:
         mov ah,6
@@ -14,4 +14,4 @@ message:
         mov dl,0
         int 10h
         
-        jmp 00000h:00600h
+        jmp 0000:0600h

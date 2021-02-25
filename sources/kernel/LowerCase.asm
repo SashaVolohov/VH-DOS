@@ -29,7 +29,8 @@ LowerCase@02: ; just add
 	push bp
 	mov bp,bx
 	dec bp
-	mov [si+bp],al
+	add bp,si
+	mov [bp],al
 	pop bp
 	jmp LowerCase@01
 LowerCase@03: ; process, add
@@ -37,13 +38,15 @@ LowerCase@03: ; process, add
 	push bp
 	mov bp,bx
 	dec bp
-	mov [si+bp],al
+	add bp,si
+	mov [bp],al
 	pop bp
 	jmp LowerCase@01
 LowerCase@exit:
 	push bp
 	mov bp,bx
 	dec bp
-	mov [si+bp],0
+	add bp,si
+	mov byte [bp],0
 	pop bp
 	ret

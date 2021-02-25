@@ -9,7 +9,7 @@
 ; ` align 512
 ; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
-	org 7C00h
+	org 07C00h
 	
 MACRO zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
@@ -18,8 +18,10 @@ HEADS = 1
 SPT = 7
 Diskette_Size equ 1474560;bytes
 
-begin:	
+begin:
 	file "setup\pre_boot.bin",512 ; Для следующего загрузчика
+	db 0F0h, 0FFh, 0FFh ; 3,5" HD floppy disk
+	zerobytes 512
 	file "setup\boot.bin" ; Первый загрузчик (MBR) установщик > 512 байт
 	;>1>; file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
 	;>1>; zerobytes 512

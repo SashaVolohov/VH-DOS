@@ -4,16 +4,14 @@
 ; Данный файл служит для запуска ОС.
 ; Этот файл находится в MBR дискеты/жёсткого диска. Загружается по адресу 0000:7C00
 
-	org 07C00h
+	org 7C00h
 
 start:
 	cli
-	push qword 0
-	push qword 0
-	pop cs
-	pop ds
-	pop es
-	pop ss
+	xor ax,ax
+	mov ds,ax
+	mov es,ax
+	mov ss,ax
 	mov sp,07C00h
 	sti
 	
@@ -45,7 +43,7 @@ start:
 	mov al,1
 	mov ah,2
 	int 13h
-	jmp 00000h:00500h
+	jmp 00000:00500h
 	call ClearMes
 	
 	mov ah,2
