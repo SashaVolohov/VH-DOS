@@ -31,8 +31,8 @@ ClearBuf:
 
 ; Knowledge base
 command_cls			equ 00000h:00800h
-command_ver			equ 00000h:007E3h
-command_restart		equ 00000h:00A00h
+;command_ver			equ 00000h:007E3h
+command_restart		equ 00000h:007EEh
 ;--------------------
 
 Command:
@@ -147,15 +147,16 @@ ScrollDown:
 	mov cx,dx
 	mov dx,0184Fh ; x,y = 80,25
 	jmp AfterScroll
+
 Delete_symbol:
 	cmp dl,4
 	jz Command
-	sub dl,1
+	dec dl
 	call SetCursorPos
 	mov al,20h
 	mov [string+si],al
-	mov ah,09h
-	mov bx,0007h
+	mov ah,9
+	mov bx,7
 	mov cx,1
 	int 10h
 	dec si
@@ -175,104 +176,18 @@ SetCursorPos:
 	int 10h
 	ret
 
-text_disk db '$  >',0
+text_disk db 'C:\>',0
 bad db 'Bad command or file name',0
 cmd_ver db 'ver',0
 cmd_cls db 'cls',0
 cmd_restart db 'restart',0
 verinfo db 'VH-DOS 1.0. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
 
-TxtPrint:
-	mov si,bp
-	xor bx,bx
-TxtPrint@01:
-	cmp bx,0FFFFh
-	jz TxtPrint@02
-	mov al,byte [si+bx]
-	cmp al,0
-	jz TxtPrint@02
-	push bx ax
-	pop ax
-	mov ah,09h
-	mov bh,0
-	mov bl,07h
-	mov cx,1
-	int 10h
-	mov ah,03h
-	xor bx,bx
-	int 10h
-	mov ah,02h
-	xor bx,bx
-	inc dl
-	int 10h
-	pop bx
-	inc bx
-	jmp TxtPrint@01
-TxtPrint_Data01 db 0
-TxtPrint@02:
-	xor bx,bx
-	xor bp,bp
-	xor si,si
-	xor ax,ax
-	ret
-	
-MultiTxtPrint:
-	mov si,bp
-	xor bx,bx
-	mov ah,3
-	mov bh,0
-	int 10h
-	mov [MultiTxtPrint_oldpos],dx
-MultiTxtPrint@01:
-	cmp bx,0FFFFh
-	jz MultiTxtPrint@02
-	mov al,byte [si+bx]
-	cmp al,0
-	jz MultiTxtPrint@02
-	cmp al,00Dh
-	push bx ax
-	jz MultiTxtPrint@01_a
-	pop ax bx
-	jmp MultiTxtPrint@01_b
-MultiTxtPrint@01_a:
-	mov ah,3
-	mov bh,0
-	int 10h
-	inc dh
-	mov cx,[MultiTxtPrint_oldpos]
-	mov dl,cl
-	mov ah,2
-	mov bh,0
-	int 10h
-	pop ax bx
-MultiTxtPrint@01_b:	
-	push bx ax
-	pop ax
-	mov ah,09h
-	mov bh,0
-	mov bl,07h
-	mov cx,1
-	int 10h
-	mov ah,03h
-	xor bx,bx
-	int 10h
-	mov ah,02h
-	xor bx,bx
-	inc dl
-	int 10h
-	pop bx
-	inc bx
-	jmp MultiTxtPrint@01
-MultiTxtPrint_Data01 db ?
-MultiTxtPrint_oldpos dw ?
-MultiTxtPrint@02:
-	xor bx,bx
-	xor bp,bp
-	xor si,si
-	xor ax,ax
-	ret
+include "..\kernel\TxtPrint.asm";
+include "..\kernel\MultiTxtPrint.asm";
 
-string db 50 dup (?)
+string db (50 + 1) dup (0)
+	; (%d + 1) для /kernel/UpperCase
 
 Bad_Command:
 	mov bp,bad
@@ -333,28 +248,3 @@ ClearBuffer@Loop1:
 	mov [string+bx],0
 	loop ClearBuffer@Loop1
 	jmp Command
-
-command_cls:
-	jmp 0000:0800h
-
-BSOD:
-	mov ax,2
-	int 10h
-
-	mov ax,00900h
-	mov bx,0001Fh
-	mov cx,2000d
-	int 10h
-
-	mov ah,2
-	mov bh,0
-	mov dx,00202h
-	int 10h
-
-	mov bp,BSOD_part01
-	call MultiTxtPrint
-	
-	mov ah,0
-	int 16h
-	
-	jmp 0FFFFh:00000h

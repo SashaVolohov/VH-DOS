@@ -1,11 +1,34 @@
 ; Операционная система VH-DOS
 ; © Саша Волохов, Артём Котов, 2020-2021.
 
-; Данный файл служит для запуска ОС, и загружает основные программы в память.
+; Данный файл служит для запуска ОС, и загружает следующие программы в память:
+;	/kernel/UpperCase.asm
+;	/kernel/PowerMgmt.asm
+; 	/utils/command.asm
+;	/utils/cls.asm
+;
+; Их расположение описано в /memory-map.txt
 
 	org 00500h
 
-message:
+MACRO load_in_mem sector, address {
+	xor ax,ax
+	mov es,ax
+	mov bx,address
+	mov ch,0
+	mov cl,sector
+	mov dh,0
+	mov dl,80h
+	mov al,1
+	mov ah,2
+	int 13h
+}
+
+; Knowledge base
+Task_command		equ 0000:0600h
+;--------------------
+
+Task_DOSLDR:
 	mov ax,2
 	int 10h
 
@@ -14,44 +37,20 @@ message:
 
 	mov ah,2
 	mov bh,0
-	mov dh,2
-	mov dl,0
+	mov dx,00200h
 	int 10h
 	
-	xor ax,ax
+	;>1>;xor ax,ax
 	push word 0
 	pop es
 
-	mov bx,800h
-	mov ch,0
-	mov cl,04h
-	mov dh,0
-	mov dl,80h
-	mov al,01h
-	mov ah,02h
-	int 13h
+	load_in_mem 3,	00600h ; /utils/command.asm
+	load_in_mem 4,	007D0h ; /utils/cls.asm
+	load_in_mem 5,	007EEh ; /kernel/PowerMgmt.asm
+	load_in_mem 6,	00A00h ; /kernel/UpperCase.asm
+	load_in_mem 7,	01000h ; /kernel/BSOD.asm
 
-	xor ax,ax
-	mov es,ax
-	mov bx,00600h
-	mov ch,0
-	mov cl,3
-	mov dh,0
-	mov dl,80h
-	mov al,1
-	mov ah,2
-	int 13h
-
-	mov ax,2
-	int 10h
-
-	mov ah,2
-	mov bh,0
-	mov dh,0
-	mov dl,0
-	int 10h
-
-	jmp 0000:0600h	
+	jmp Task_command
 	jmp $ ; Возможно, никогда досюда процесс не дойдёт
 
 TxtPrint:

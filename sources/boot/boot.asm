@@ -97,7 +97,7 @@ ClearMes:
 	mov al,0
 	mov bh,7
 	mov cx,0
-	mov dx,2000d
+	mov dx,0184Fh
 	int 10h
 	ret
 ;----

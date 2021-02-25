@@ -10,7 +10,7 @@
 ; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
 	org 07C00h
-	
+
 MACRO zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
 }
@@ -22,18 +22,20 @@ begin:
 	file "setup\pre_boot.bin",512 ; Для следующего загрузчика
 	db 0F0h, 0FFh, 0FFh ; 3,5" HD floppy disk
 	zerobytes 512
-	file "setup\boot.bin" ; Первый загрузчик (MBR) установщик > 512 байт
-	;>1>; file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
-	;>1>; zerobytes 512
+	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик > 512 байт
 	file "boot\boot.bin",512 ; Загрузчик
 	file "boot\DOSLDR.bin" ; DOSLDR
 	zerobytes 512
-	;->file "setup\install.bin" ; Этот файл запускается после установки
-	;->zerobytes 512
 	file "utils\command.bin" ; COMMAND.SYS
 	zerobytes 512
 	file "utils\cls.bin" ; команда "help"
 	zerobytes 512
+	file "kernel\PowerMgmt.bin"
+	zerobytes 512
+	file "kernel\UpperCase.bin"
+	zerobytes 512
+	file "kernel\BSOD.bin"
+	zerobytes 512
 	zerobytes HEADS*SPT*512
-	
+
 times (Diskette_Size - ($ - 07C00h)) db 0

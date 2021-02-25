@@ -25,8 +25,6 @@ start:
 	mov sp,07C00h
 	sti
 
-	;jmp 0FFFFh:00000h
-
 	mov ah,2
 	mov al,1
 	mov ch,0
