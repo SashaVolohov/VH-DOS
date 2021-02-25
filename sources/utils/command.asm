@@ -11,7 +11,7 @@ MACRO ccmps nstr, nlength, jumpto {
 
 ; Knowledge base
 command_cls			equ 000000800h
-;command_ver			equ 0000007E3h
+;command_ver		equ 0000007E3h
 command_restart		equ 0000007EEh
 f_UpperCase			equ 000000A00h
 TxtPrint			equ 000000A20h
@@ -41,7 +41,6 @@ ClearBuf:
 
 Command:
 	mov ah,10h
-	;>1>;mov ah,0
 	int 16h
 
 	cmp ah,00Eh ; [Backspace]
@@ -69,17 +68,17 @@ AddToBuffer:
 
 	mov [string+si],al
 	inc si
-	
+
 	mov ah,00Ah
 	mov bx,7
 	mov cx,1
 	int 10h
-	
+
 	mov ah,3
 	mov bh,0
 	int 10h
 	inc dl
-	
+
 	mov ah,2
 	mov bh,0
 	int 10h
@@ -90,7 +89,7 @@ Parse_Command:
 	mov ah,3
 	mov bh,0
 	int 10h
-	
+
 	cmp dh,24d
 	jz ScrollDown
 AfterScroll:
@@ -146,7 +145,7 @@ CC_cls:
 	jmp AfterIntegerParse
 ;----
 Command_Integer_Parse@String dw ?
-
+;----
 ScrollDown:
 	mov ah,7
 	mov al,3
@@ -154,7 +153,7 @@ ScrollDown:
 	mov cx,dx
 	mov dx,0184Fh ; x,y = 80,25
 	jmp AfterScroll
-
+;----
 Delete_symbol:
 	cmp dl,4
 	jz Command
@@ -168,21 +167,22 @@ Delete_symbol:
 	int 10h
 	dec si
 	jmp Command
-	
+;----
 SetCursorPos:
-	cmp dh,26
-	jz PageUp
-	cmp dh,27
-	jz PageUp
-	cmp dh,28
-	jz PageUp
-	cmp dh,29
-	jz PageUp
+	cmp dh,26 ; ???
+	jz PageUp ; ???
+	cmp dh,27 ; ???
+	jz PageUp ; ???
+	cmp dh,28 ; ???
+	jz PageUp ; ???
+	cmp dh,29 ; ???
+	jz PageUp ; ???
+
 	mov ah,2
 	xor bh,bh
 	int 10h
 	ret
-
+;----
 cmd_prompt db 'C:\>',0
 bad db 'Bad command or file name',0
 cmd_ver db 'VER',0
@@ -194,7 +194,7 @@ verinfo db 'VH-DOS '
 
 string db (50 + 1) dup (0)
 	; (%d + 1) для /kernel/UpperCase
-
+;----
 Bad_Command:
 	mov bp,bad
 	call TxtPrint
@@ -209,41 +209,42 @@ Bad_Command:
 	; ret ; Смысла в RET здесь нет
 
 PageUp:
-	;mov ax,2
-	;int 10h
-	;mov dl,0
-	;mov dh,0
-	;call SetCursorPos
+	mov ax,2			; debug
+	int 10h				; debug
+	mov dl,0			; debug
+	mov dh,0			; debug
+	call SetCursorPos	; debug
+	
 	mov ax,00600h
 	mov bx,00007h
 	xor cx,cx
 	mov dx,0184Fh ; x,y = 80,25
 	int 10h
-	
+
 	mov ah,2
 	mov bh,0
 	xor dx,dx
 	int 10h
-	
+
 	mov bp,cmd_prompt
 	call TxtPrint
-	
-	;mov dl,4
-	;mov dh,0
-	;call SetCursorPos
+
+	mov dl,4			; debug
+	mov dh,0			; debug
+	call SetCursorPos	; debug
 	jmp Command
 	ret
 
 command_ver:
 	mov bp,verinfo
 	call TxtPrint
-	;add dh,2
-	;mov dl,0
-	;call SetCursorPos
+	add dh,2			; debug
+	mov dl,0			; debug
+	call SetCursorPos	; debug
 	mov bp,cmd_prompt
 	call TxtPrint
-	;add dl,4
-	;call SetCursorPos
+	add dl,4			; debug
+	call SetCursorPos	; debug
 	jmp ClearBuffer
 	ret
 

@@ -55,8 +55,8 @@ Step2:
 	mov dl,0
 	int 10h
 	
-	;>S>;mov bp,setup_welcome
-	;>S>;call TxtPrint
+	mov bp,setup_welcome
+	call TxtPrint
 	
 	mov ah,2
 	mov bh,0
@@ -64,8 +64,8 @@ Step2:
 	mov dl,0
 	int 10h
 	
-	;>S>;mov bp,setup_welcome_2
-	;>S>;call TxtPrint
+	mov bp,setup_welcome_2
+	call TxtPrint
 	
 	mov ah,2
 	mov bh,0
@@ -73,8 +73,8 @@ Step2:
 	mov dl,0
 	int 10h
 	
-	;>S>;mov bp,ctrlaltdel_msg
-	;>S>;call TxtPrint
+	mov bp,ctrlaltdel_msg
+	call TxtPrint
 	
 	mov ah,2
 	mov bh,0
@@ -89,52 +89,42 @@ Step2:
 	jmp start
 	
 install:
-	mov ax,0000h
+	xor ax,ax
 	mov es,ax
-	mov bx,900h
-	mov ch,0
-	mov cl,06h
-	mov dh,0
-	mov	dl,0h
-	mov al,01h
-	mov ah,02h
+	mov bx,00900h
+	mov cx,6
+	xor dx,dx
+	mov ax,00201h
 	int 13h ; чтение boot файла
 	
-	mov ah,05h
-	mov al,01h
-	mov ch,0
-	mov cl,03h
-	mov dh,0h
-	mov dl,80h
+	mov ah,5
+	mov al,1
+	mov cx,3
+	xor dh,dh
+	mov dl,080h
 	int 13h
 	
-	mov ax,0000h
+	xor ax,ax
 	mov es,ax
-	mov bx,900h
-	mov ch,0
-	mov cl,03h
-	mov dh,0
+	mov bx,00900h ; 0000:0900
+	mov cx,3
+	xor dh,dh
 	mov	dl,80h
-	mov al,01h
-	mov ah,03h
+	mov ax,00301h
 	int 13h
-	
-	mov ax,0000h
+
+	xor ax,ax
 	mov es,ax
-	mov bx,0AD0h
-	mov ch,0
-	mov cl,07h
-	mov dh,0
-	mov dl,0h
-	mov al,01h
-	mov ah,02h
+	mov bx,00AD0h ; 0000:0AD0
+	mov cx,7
+	xor dx,dx
+	mov ax,00201h
 	int 13h ; чтение boot файла
 
-	mov ah,05h
-	mov al,01h
-	mov ch,0
-	mov cl,04h
-	mov dh,0h
+	mov ah,5
+	mov al,1
+	mov cx,4
+	xor dh,dh
 	mov dl,80h
 	int 13h
 
@@ -154,12 +144,11 @@ install:
 
 	mov ah,2
 	mov bh,0
-	mov dh,0
-	mov dl,0
+	xor dx,dx
 	int 10h
 
-	;>S>;mov bp,setup_complete
-	;>S>;call TxtPrint
+	mov bp,setup_complete
+	call TxtPrint
 
 	mov ah,10h
     int 16h
@@ -167,7 +156,7 @@ install:
 	mov ax,40h
 	push ax
 	pop ds
-	mov word ptr ds:72h, 1234h
+	mov word ptr ds:72h,1234h
 	mov ax,0FFFFh
 	push ax
 	push 0

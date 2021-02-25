@@ -53,8 +53,8 @@ start:
 	mov dh,2
 	mov dl,0
 	int 10h
-	
-	jmp $
+
+	jmp $ ; переход на DOSLDR
 
 include "..\kernel\TxtPrint.asm" ; because TxtPrint isn't loaded yet
 
