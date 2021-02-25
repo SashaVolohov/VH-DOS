@@ -3,8 +3,8 @@
 0000:07D0 - /utils/cls.asm
 0000:07EE - /kernel/PwrMgmt.asm
 0000:0A00 - /kernel/UpperCase.asm
-0000:0A00 - /kernel/LowerCase.asm
-0000:0A00 - /kernel/TxtPrint.asm
-0000:0A00 - /kernel/MultiTxtPrint.asm
+0000:0A10 - /kernel/LowerCase.asm
+0000:0A20 - /kernel/TxtPrint.asm
+0000:0A30 - /kernel/MultiTxtPrint.asm
 0000:1000 - /kernel/BSOD.asm
 0000:7C00 - /boot/boot.asm

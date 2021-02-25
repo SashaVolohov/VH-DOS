@@ -30,9 +30,11 @@ ClearBuf:
 	jmp Command
 
 ; Knowledge base
-command_cls			equ 00000h:00800h
-;command_ver			equ 00000h:007E3h
-command_restart		equ 00000h:007EEh
+command_cls			equ 000000800h
+;command_ver			equ 0000007E3h
+command_restart		equ 0000007EEh
+f_UpperCase			equ 000000A00h
+BSOD				equ 000001000h
 ;--------------------
 
 Command:
@@ -101,6 +103,9 @@ AfterScroll:
 	mov ax,cs ; ?
 	mov ds,ax ; ?
 	mov es,ax ; ?
+
+	mov bp,string
+	call f_UpperCase
 
 	mov di,string
 	jmp Command_Integer_Parse
@@ -176,11 +181,11 @@ SetCursorPos:
 	int 10h
 	ret
 
-text_disk db 'C:\>',0
+cmd_prompt db 'C:\>',0
 bad db 'Bad command or file name',0
-cmd_ver db 'ver',0
-cmd_cls db 'cls',0
-cmd_restart db 'restart',0
+cmd_ver db 'VER',0
+cmd_cls db 'CLS',0
+cmd_restart db 'RESTART',0
 verinfo db 'VH-DOS 1.0. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
 
 include "..\kernel\TxtPrint.asm";
@@ -195,7 +200,7 @@ Bad_Command:
 	;add dh,2
 	;mov dl,0
 	;call SetCursorPos
-	mov bp,text_disk
+	mov bp,cmd_prompt
 	call TxtPrint
 	;add dl,4
 	;call SetCursorPos
@@ -219,7 +224,7 @@ PageUp:
 	xor dx,dx
 	int 10h
 	
-	mov bp,text_disk
+	mov bp,cmd_prompt
 	call TxtPrint
 	
 	;mov dl,4
@@ -234,7 +239,7 @@ command_ver:
 	;add dh,2
 	;mov dl,0
 	;call SetCursorPos
-	mov bp,text_disk
+	mov bp,cmd_prompt
 	call TxtPrint
 	;add dl,4
 	;call SetCursorPos

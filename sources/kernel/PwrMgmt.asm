@@ -1,6 +1,18 @@
 	org 07C00h
 
-BSOD		equ 
+BSOD		equ 000001000h
+
+Restart:
+; Тёплая перезагрузка компьютера
+	mov ax,40h
+	push ax
+	pop ds
+	mov word ptr ds:72h,1234h
+	mov ax,0FFFFh
+	push ax
+	mov ax,0
+	push ax
+	retf
 
 ACPI_Shutdown:
 ; Выключение компьютера через ACPI интерфейс
@@ -45,14 +57,3 @@ ACPI_Shutdown:
 	ret
 ACPI_Shutdown@ThrowError:
 	jmp BSOD
-Restart:
-; Тёплая перезагрузка компьютера
-	mov ax, 40h
-	push ax
-	pop ds
-	mov word ptr ds:72h, 1234h
-	mov ax, 0FFFFh
-	push ax
-	mov ax, 0
-	push ax
-	ret

@@ -1,6 +1,7 @@
 	org 07C00h
 
-command_reboot equ 00000h:007EEh
+command_reboot	equ 0000007EEh
+MultiTxtPrint	equ 000000A30h
 
 BSOD:
 	mov ax,2
@@ -23,3 +24,5 @@ BSOD:
 	int 16h
 	
 	jmp command_reboot
+
+BSOD_part01 db 'VH-DOS: Fatal error',0Dh,0Dh,'Error has been occured during system operation.',0

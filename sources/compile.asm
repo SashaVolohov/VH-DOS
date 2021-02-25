@@ -30,7 +30,7 @@ begin:
 	zerobytes 512
 	file "utils\cls.bin" ; команда "help"
 	zerobytes 512
-	file "kernel\PowerMgmt.bin"
+	file "kernel\PwrMgmt.bin"
 	zerobytes 512
 	file "kernel\UpperCase.bin"
 	zerobytes 512
