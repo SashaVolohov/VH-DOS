@@ -9,6 +9,16 @@ MACRO ccmps nstr, nlength, jumpto {
 	jz jumpto
 }
 
+; Knowledge base
+command_cls			equ 000000800h
+;command_ver			equ 0000007E3h
+command_restart		equ 0000007EEh
+f_UpperCase			equ 000000A00h
+TxtPrint			equ 000000A20h
+MultiTxtPrint		equ 000000A30h
+BSOD				equ 000001000h
+;--------------------
+
 Task_command:
 	mov ax,2
 	int 10h
@@ -28,14 +38,6 @@ ClearBuf:
 	mov [string+bx],0
 	loop ClearBuf
 	jmp Command
-
-; Knowledge base
-command_cls			equ 000000800h
-;command_ver			equ 0000007E3h
-command_restart		equ 0000007EEh
-f_UpperCase			equ 000000A00h
-BSOD				equ 000001000h
-;--------------------
 
 Command:
 	mov ah,10h
@@ -187,9 +189,6 @@ cmd_ver db 'VER',0
 cmd_cls db 'CLS',0
 cmd_restart db 'RESTART',0
 verinfo db 'VH-DOS 1.0. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
-
-include "..\kernel\TxtPrint.asm";
-include "..\kernel\MultiTxtPrint.asm";
 
 string db (50 + 1) dup (0)
 	; (%d + 1) для /kernel/UpperCase

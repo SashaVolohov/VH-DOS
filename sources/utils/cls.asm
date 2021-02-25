@@ -1,6 +1,6 @@
 	org 007D0h
 
-Task_command	equ 000000600h
+Task_command	equ 00000:00600h
 
 Task_cls: ; занимает 26 байт.
           ; на запас - ещё 4 байта.
