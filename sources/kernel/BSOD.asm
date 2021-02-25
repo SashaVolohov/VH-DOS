@@ -1,6 +1,6 @@
 	org 07C00h
 
-command_reboot equ 00000h:
+command_reboot equ 00000h:007EEh
 
 BSOD:
 	mov ax,2
