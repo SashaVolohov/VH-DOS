@@ -23,12 +23,11 @@ begin:
 	file "setup\boot.bin" ; Первый загрузчик (MBR) установщик > 512 байт
 	;>1>; file "setup\DOSLDR.bin" ; Второй загрузчик (DOSLDR) установщик
 	;>1>; zerobytes 512
-	file "setup\strings.asm"
 	file "boot\boot.bin",512 ; Загрузчик
 	file "boot\DOSLDR.bin" ; DOSLDR
 	zerobytes 512
-	;>2>; file "setup\install.bin" ; Этот файл запускается после установки
-	zerobytes 512
+	;->file "setup\install.bin" ; Этот файл запускается после установки
+	;->zerobytes 512
 	file "utils\command.bin" ; COMMAND.SYS
 	zerobytes 512
 	file "utils\cls.bin" ; команда "help"
