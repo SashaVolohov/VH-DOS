@@ -34,6 +34,12 @@ begin:
 	zerobytes 512
 	file "kernel\UpperCase.bin"
 	zerobytes 512
+	file "kernel\LowerCase.bin"
+	zerobytes 512
+	file "kernel\TxtPrint.bin"
+	zerobytes 512
+	file "kernel\MultiTxtPrint.bin"
+	zerobytes 512
 	file "kernel\BSOD.bin"
 	zerobytes 512
 	zerobytes HEADS*SPT*512

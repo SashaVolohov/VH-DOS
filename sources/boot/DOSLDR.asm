@@ -25,7 +25,7 @@ MACRO load_in_mem sector, address {
 }
 
 ; Knowledge base
-Task_command		equ 0000:0600h
+Task_command		equ 000000600h
 ;--------------------
 
 Task_DOSLDR:
@@ -48,10 +48,12 @@ Task_DOSLDR:
 	load_in_mem 4,	007D0h ; /utils/cls.asm
 	load_in_mem 5,	007EEh ; /kernel/PowerMgmt.asm
 	load_in_mem 6,	00A00h ; /kernel/UpperCase.asm
-	load_in_mem 7,	01000h ; /kernel/BSOD.asm
-
+	load_in_mem 7,	00A10h ; /kernel/LowerCase.asm
+	load_in_mem 8,	00A20h ; /kernel/TxtPrint.asm
+	load_in_mem 9,	00A30h ; /kernel/MultiTxtPrint.asm
+	load_in_mem 10,	01000h ; /kernel/BSOD.asm
 	jmp Task_command
-	jmp $ ; Возможно, никогда досюда процесс не дойдёт
+	; jmp $ ; Возможно, никогда досюда процесс не дойдёт
 
 TxtPrint:
 	mov si,bp

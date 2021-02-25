@@ -188,7 +188,9 @@ bad db 'Bad command or file name',0
 cmd_ver db 'VER',0
 cmd_cls db 'CLS',0
 cmd_restart db 'RESTART',0
-verinfo db 'VH-DOS 1.0. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
+verinfo db 'VH-DOS '
+	file "..\version.txt"
+	db '. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
 
 string db (50 + 1) dup (0)
 	; (%d + 1) для /kernel/UpperCase
