@@ -2,12 +2,7 @@
 ; © Саша Волохов, Артём Котов, 2020-2021.
 
 ; Данный файл служит для запуска ОС, и загружает следующие программы в память:
-;	/kernel/UpperCase.asm
-;	/kernel/PowerMgmt.asm
 ; 	/utils/command.asm
-;	/utils/cls.asm
-;
-; Их расположение описано в /memory-map.txt
 
 	org 00500h
 
@@ -45,13 +40,10 @@ Task_DOSLDR:
 	pop es
 
 	load_in_mem 3,	00600h ; /utils/command.asm
-	load_in_mem 4,	007D0h ; /utils/cls.asm
-	load_in_mem 5,	007EEh ; /kernel/PowerMgmt.asm
-	load_in_mem 6,	00A00h ; /kernel/UpperCase.asm
-	load_in_mem 7,	00A10h ; /kernel/LowerCase.asm
-	load_in_mem 8,	00A20h ; /kernel/TxtPrint.asm
-	load_in_mem 9,	00A30h ; /kernel/MultiTxtPrint.asm
-	load_in_mem 10,	01000h ; /kernel/BSOD.asm
+	load_in_mem 4,	007D0h ; ↑
+	load_in_mem 5,	009D0h ; ↑
+	load_in_mem 6,	00BD0h ; ↑
+	load_in_mem 7,	00DD0h ; ↑
 	jmp Task_command
 	; jmp $ ; Возможно, никогда досюда процесс не дойдёт
 

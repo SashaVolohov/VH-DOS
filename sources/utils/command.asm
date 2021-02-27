@@ -9,16 +9,6 @@ MACRO ccmps nstr, nlength, jumpto {
 	jz jumpto
 }
 
-; Knowledge base
-command_cls			equ 000000800h
-;command_ver		equ 0000007E3h
-command_restart		equ 0000007EEh
-f_UpperCase			equ 000000A00h
-TxtPrint			equ 000000A20h
-MultiTxtPrint		equ 000000A30h
-BSOD				equ 000001000h
-;--------------------
-
 Task_command:
 	mov ax,2
 	int 10h
@@ -31,6 +21,24 @@ Task_command:
 	call TxtPrint
 	mov dx,4 ;x,y = 4,0
 	call SetCursorPos
+	jmp Pre_Command
+
+; Functions (/kernel/*.asm)
+include "..\kernel\Global.asm" ; VersionInfo
+                               ; ClearScreen
+							   ; ClearScreen_cl
+include "..\kernel\BSOD.asm" ; BSOD
+include "..\kernel\GHNRandom.asm" ; GHNRandom
+include "..\kernel\StringReg.asm" ; UpperCase(BP = offset, !stops with 0);
+                                  ; LowerCase(BP = offset, !stops with 0)
+include "..\kernel\PCSpeaker.asm" ; Beep(AX = Hz);
+                                  ; NoBeep
+include "..\kernel\PwrMgmt.asm" ; Restart;
+                                ; ACPI_Shutdown
+include "..\kernel\ReverseByte.asm" ; ReverseByte
+include "..\kernel\TxtPrint.asm" ; TxtPrint
+                                 ; MultiTxtPrint
+
 Pre_Command:
 	mov cx,50d
 ClearBuf:
@@ -77,6 +85,7 @@ AddToBuffer:
 	mov ah,3
 	mov bh,0
 	int 10h
+
 	inc dl
 
 	mov ah,2
@@ -106,7 +115,7 @@ AfterScroll:
 	mov es,ax ; ?
 
 	mov bp,string
-	call f_UpperCase
+	call UpperCase
 
 	mov di,string
 	jmp Command_Integer_Parse
@@ -114,11 +123,11 @@ AfterIntegerParse:
 	cmp ax,0 ; bad command
 	jz Bad_Command
 	cmp ax,1 ; cls
-	jz command_cls
+	jz ClearScreen_cl
 	cmp ax,2 ; ver
-	jz command_ver
+	jz VersionInfo
 	cmp ax,3 ; restart
-	jz command_restart
+	jz Restart
 	jmp BSOD
 Command_Integer_Parse:
 ; What it returns: 
@@ -188,9 +197,6 @@ bad db 'Bad command or file name',0
 cmd_ver db 'VER',0
 cmd_cls db 'CLS',0
 cmd_restart db 'RESTART',0
-verinfo db 'VH-DOS '
-	file "..\version.txt"
-	db '. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
 
 string db (50 + 1) dup (0)
 	; (%d + 1) для /kernel/UpperCase
@@ -214,7 +220,7 @@ PageUp:
 	mov dl,0			; debug
 	mov dh,0			; debug
 	call SetCursorPos	; debug
-	
+
 	mov ax,00600h
 	mov bx,00007h
 	xor cx,cx
@@ -233,19 +239,6 @@ PageUp:
 	mov dh,0			; debug
 	call SetCursorPos	; debug
 	jmp Command
-	ret
-
-command_ver:
-	mov bp,verinfo
-	call TxtPrint
-	add dh,2			; debug
-	mov dl,0			; debug
-	call SetCursorPos	; debug
-	mov bp,cmd_prompt
-	call TxtPrint
-	add dl,4			; debug
-	call SetCursorPos	; debug
-	jmp ClearBuffer
 	ret
 
 ClearBuffer:

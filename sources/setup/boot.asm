@@ -43,7 +43,7 @@ start:
 	int 10h
 
 include "..\kernel\TxtPrint.asm" ; because no kernel modules, - no OS
-include "..\kernel\ClearScreen.asm"
+include "..\kernel\Global.asm"
 	
 Step2:	
 	mov ax,2

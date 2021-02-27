@@ -28,20 +28,6 @@ begin:
 	zerobytes 512
 	file "utils\command.bin" ; COMMAND.SYS
 	zerobytes 512
-	file "utils\cls.bin" ; команда "help"
-	zerobytes 512
-	file "kernel\PwrMgmt.bin"
-	zerobytes 512
-	file "kernel\UpperCase.bin"
-	zerobytes 512
-	file "kernel\LowerCase.bin"
-	zerobytes 512
-	file "kernel\TxtPrint.bin"
-	zerobytes 512
-	file "kernel\MultiTxtPrint.bin"
-	zerobytes 512
-	file "kernel\BSOD.bin"
-	zerobytes 512
 	zerobytes HEADS*SPT*512
 
 times (Diskette_Size - ($ - 07C00h)) db 0
