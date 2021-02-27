@@ -15,6 +15,7 @@
 
 ### To-Do
 New ideas will be considered by moderators
+- [ ] Fixing bugs
 - [X] ~~Code setup disk for OS~~, use compression algorithms
 - [ ] Code library for using FAT32
 - [ ] Code program for creating/displaying PGM files
