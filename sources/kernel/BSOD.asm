@@ -20,7 +20,7 @@ BSOD:
 	mov bp,BSOD_part01
 	call MultiTxtPrint
 
-	mov ah,0
+	mov ah,10h
 	int 16h
 	
 	jmp command_reboot
