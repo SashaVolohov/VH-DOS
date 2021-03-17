@@ -1,3 +1,0 @@
-CWSDPMI -W
-
-This command will start DPMI services in DOS.
