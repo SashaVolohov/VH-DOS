@@ -54,7 +54,7 @@ start:
 	mov dl,0
 	int 10h
 
-	jmp $ ; переход на DOSLDR
+	jmp DOSLDR
 
 include "..\kernel\TxtPrint.asm" ; because TxtPrint isn't loaded yet
 
