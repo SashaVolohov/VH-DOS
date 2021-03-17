@@ -26,7 +26,8 @@ New ideas will be considered by moderators
 - [ ] User access control system, similar to Linux
 - [ ] `raa` command - full administrator access
 
-### Statistics
+### Raw Statistics
+Total amount of compiled bytes on this moment
 | Part of OS | Size in bytes |
 | :--------- | ------------: |
 | Bootloader | 2165B |
