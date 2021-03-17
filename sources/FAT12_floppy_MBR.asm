@@ -62,11 +62,11 @@ text_FAT12_ulabel	equ 'TESTUS' ; [string] Volume (user) label, length is should 
 text_FAT12_isboot	equ 1			; Bootable? = 1, else 0. It's needed for IF in the code.
 
 macro FAT12_ulabel {
-	testablet db text_FAT12_ulabel
-	times (11 - ($ - testablet)) db 0x20
+	AA db text_FAT12_ulabel
+	times (11 - ($ - AA)) db 0x20
 }
 
-start:	
+start:
 	db 0xEB, 0x3C, 0x90
 	db text_FAT12_label ; STRING
 	db text_FAT12_bs
