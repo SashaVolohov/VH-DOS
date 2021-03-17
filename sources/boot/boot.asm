@@ -70,5 +70,5 @@ ClearMes:
 fail_ldr db 'DOSLDR is missing.',0
 fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
 ;----
-times(512-2-($-07C00h)) db 0 ; OLD
-db 055h,0AAh; FAT12 bootable medium
+times (512 - 2 - ($ - start)) db 0
+dw 0AA55h; FAT12 bootable medium
