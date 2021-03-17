@@ -85,9 +85,6 @@ start:
 	db text_FAT12_NTflags
 	db text_FAT12_sign
 	dd text_FAT12_serial
-	
-	;db text_FAT12_ulabel ; STRING
-	;data_align 8, text_FAT12_ulabel_rsize
 	FAT12_ulabel
 Bootcode:
 	cli
