@@ -4,7 +4,7 @@
 ; Данный файл служит для запуска ОС, и загружает следующие программы в память:
 ; 	/utils/command.asm
 
-	org 00500h
+	org 07C00h
 
 MACRO load_in_mem sector, address {
 	xor ax,ax
@@ -39,11 +39,16 @@ Task_DOSLDR:
 	push word 0
 	pop es
 
-	load_in_mem 3,	00600h ; /utils/command.asm
-	load_in_mem 4,	007D0h ; ↑
-	load_in_mem 5,	009D0h ; ↑
-	load_in_mem 6,	00BD0h ; ↑
-	load_in_mem 7,	00DD0h ; ↑
+	;>2;load_in_mem 3,	00600h ; /utils/command.asm
+	;>2;load_in_mem 4,	007D0h ; ↑
+	;>2;load_in_mem 5,	009D0h ; ↑
+	;>2;load_in_mem 6,	00BD0h ; ↑
+	;>2;load_in_mem 7,	00DD0h ; ↑
+	;>2;load_in_mem 8,	
+	;load_in_mem 2, 
+	load_in_mem 4,	0x0600 ; /utils/command.bin
+	load_in_mem 5,	0x1000 ; /kernel/BSOD.inc
+	
 	jmp Task_command
 	; jmp $ ; Возможно, никогда досюда процесс не дойдёт
 

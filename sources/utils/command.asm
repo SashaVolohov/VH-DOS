@@ -1,7 +1,9 @@
-	org 00600h
+	org 07C00h
+
+include "..\standards.inc"
 
 MACRO ccmps nstr, nlength, jumpto {
-	mov si,[Command_Integer_Parse@String]
+	mov si,[Command_Integer_Parse@stringd]
 	push si
 	mov si,nstr
 	mov cx,nlength
@@ -24,26 +26,30 @@ Task_command:
 	jmp Pre_Command
 
 ; Functions (/kernel/*.asm)
-include "..\kernel\Global.asm" ; VersionInfo
+include "..\kernel\Global.inc" ; VersionInfo
                                ; ClearScreen
 							   ; ClearScreen_cl
-include "..\kernel\BSOD.asm" ; BSOD
-include "..\kernel\GHNRandom.asm" ; GHNRandom
-include "..\kernel\StringReg.asm" ; UpperCase(BP = offset, !stops with 0);
+include "..\kernel\BSOD.inc" ; BSOD
+include "..\kernel\GHNRandom.inc" ; GHNRandom
+include "..\kernel\StringReg.inc" ; UpperCase(BP = offset, !stops with 0);
                                   ; LowerCase(BP = offset, !stops with 0)
-include "..\kernel\PCSpeaker.asm" ; Beep(AX = Hz);
+include "..\kernel\PCSpeaker.inc" ; Beep(AX = Hz);
                                   ; NoBeep
-include "..\kernel\PwrMgmt.asm" ; Restart;
+include "..\kernel\PwrMgmt.inc" ; Restart;
                                 ; ACPI_Shutdown
-include "..\kernel\ReverseByte.asm" ; ReverseByte
-include "..\kernel\TxtPrint.asm" ; TxtPrint
+include "..\kernel\ReverseByte.inc" ; ReverseByte
+include "..\kernel\TxtPrint.inc" ; TxtPrint
                                  ; MultiTxtPrint
+
+stringd equ 0x2000
+stringd_len equ 0x33
 
 Pre_Command:
 	mov cx,50d
 ClearBuf:
 	mov bx,cx
-	mov [string+bx],0
+	add bx,stringd
+	mov byte [ds:bx],0
 	loop ClearBuf
 	jmp Command
 
@@ -74,7 +80,7 @@ AddToBuffer:
 	cmp dl,53d ; Is cursor at end?
 	jz Command
 
-	mov [string+si],al
+	mov [ds:stringd+si],al
 	inc si
 
 	mov ah,00Ah
@@ -114,10 +120,10 @@ AfterScroll:
 	mov ds,ax ; ?
 	mov es,ax ; ?
 
-	mov bp,string
+	mov bp,stringd
 	call UpperCase
 
-	mov di,string
+	mov di,stringd
 	jmp Command_Integer_Parse
 AfterIntegerParse:
 	cmp ax,0 ; bad command
@@ -139,7 +145,7 @@ Command_Integer_Parse:
 ; 0x0002 | VER        ;
 ; 0x0003 | RESTART    ;
 ;---------------------;
-	mov [Command_Integer_Parse@String],si
+	mov [Command_Integer_Parse@stringd],si
 	xor ax,ax
 	ccmps cmd_cls,		3, CC_cls		; AX = 0x0001
 	ccmps cmd_ver,		3, CC_version	; AX = 0x0002
@@ -153,7 +159,7 @@ CC_cls:
 	inc ax
 	jmp AfterIntegerParse
 ;----
-Command_Integer_Parse@String dw ?
+Command_Integer_Parse@stringd dw ?
 ;----
 ScrollDown:
 	mov ah,7
@@ -169,7 +175,7 @@ Delete_symbol:
 	dec dl
 	call SetCursorPos
 	mov al,20h
-	mov [string+si],al
+	mov [stringd+si],al
 	mov ah,9
 	mov bx,7
 	mov cx,1
@@ -177,29 +183,11 @@ Delete_symbol:
 	dec si
 	jmp Command
 ;----
-SetCursorPos:
-	cmp dh,26 ; ???
-	jz PageUp ; ???
-	cmp dh,27 ; ???
-	jz PageUp ; ???
-	cmp dh,28 ; ???
-	jz PageUp ; ???
-	cmp dh,29 ; ???
-	jz PageUp ; ???
-
-	mov ah,2
-	xor bh,bh
-	int 10h
-	ret
-;----
-cmd_prompt db 'C:\>',0
 bad db 'Bad command or file name',0
 cmd_ver db 'VER',0
 cmd_cls db 'CLS',0
 cmd_restart db 'RESTART',0
 
-string db (50 + 1) dup (0)
-	; (%d + 1) для /kernel/UpperCase
 ;----
 Bad_Command:
 	mov bp,bad
@@ -241,10 +229,5 @@ PageUp:
 	jmp Command
 	ret
 
-ClearBuffer:
-	mov cx,50d
-ClearBuffer@Loop1:
-	mov bx,cx
-	mov [string+bx],0
-	loop ClearBuffer@Loop1
-	jmp Command
+;stringd db (50 + 1) dup (0)
+	; (%d + 1) для /kernel/UpperCase

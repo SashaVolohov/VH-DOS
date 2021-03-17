@@ -39,7 +39,7 @@ start:
 	mov es,ax
 	mov bx,00500h
 	mov ch,0
-	mov cl,2
+	mov cl,2 ; СЕКТОР №2
 	mov dh,0
 	mov dl,80d
 	mov al,1
@@ -56,7 +56,7 @@ start:
 
 	jmp DOSLDR
 
-include "..\kernel\TxtPrint.asm" ; because TxtPrint isn't loaded yet
+include "..\kernel\TxtPrint.inc" ; because TxtPrint isn't loaded yet
 
 ClearMes:
 	mov ah,6
