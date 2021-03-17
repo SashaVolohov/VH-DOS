@@ -6,11 +6,11 @@
 
 	org 07C00h
 
-FAT12_LABEL equ 'SASHA',0,0,0
+FAT12_LABEL equ 'SASHA'
 
 start:
 ; Часть FAT12
-	db 0EBh,058h,090h,FAT12_LABEL,000h,002h,001h,001h,000h,002h
+	db 0EBh,058h,090h,FAT12_LABEL,(8 - (($+3) - start)) dup (0),000h,002h,001h,001h,000h,002h
 	db 0E0h,000h,040h,00Bh,0F0h,009h,000h,012h,000h,002h,000h,000h,000h,000h,000h,000h,000h
 	db 000h,000h,000h,000h,029h,0E2h,046h,04Eh,029h,020h,020h,020h,020h,020h,020h,020h,020h
 	db 020h,020h,020h,046h,041h,054h,031h,032h,020h,020h,020h,000h,000h,000h,000h,000h,000h
@@ -39,4 +39,4 @@ start:
 	retf        ; загрузчик
 
 times (512 - 2 - (07C00h - $)) db 0
-db 055h,0AAh
+dw 0AA55h
