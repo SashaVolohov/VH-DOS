@@ -1,74 +1,39 @@
 ; Операционная система VH-DOS
 ; © Саша Волохов, 2020-2021.
+; Многочисленные редакции © Артём Котов. 2021.
 
 ; Данный файл служит для запуска ОС.
 ; Этот файл находится в MBR дискеты/жёсткого диска. Загружается по адресу 0000:7C00
 
 	org 07C00h
 
-DOSLDR		equ 000000500h
+include "..\standards.inc"
+
+macro PrintOut string_offset {
+	mov bp,string_offset
+	call TxtPrint
+}
 
 start:
-	cli
-	xor ax,ax
-	mov ds,ax
-	mov es,ax
-	mov ss,ax
-	mov sp,07C00h
-	sti
+	Initial_Bootcode
 
-	mov ax,2
-	int 10h
-	mov ah,2
-	mov bh,0
-	xor dx,dx
+	mov ax,Standard_video_mode
 	int 10h
 
-	mov bp,fail_ldr
-	call TxtPrint
-
-	mov ah,2
-	mov bh,0
-	mov dx,00100h
-	int 10h
-
-	mov bp,fail_ldr_two
-	call TxtPrint
-
-	mov ax,0
-	mov es,ax
-	mov bx,00500h
-	mov ch,0
-	mov cl,2 ; СЕКТОР №2
-	mov dh,0
-	mov dl,80d
-	mov al,1
-	mov ah,2
-	int 13h
+	SetCursorPosition 0x00 0x00
+	PrintOut fail_ldr
+	SetCursorPosition 0x01 0x00
+	PrintOut fail_ldr_two
+	ClearExtSeg
+	ReadSector 2, HDD1, DOSLDR
 	jmp DOSLDR
-	call ClearMes
-
-	mov ah,2
-	mov bh,0
-	mov dh,2
-	mov dl,0
-	int 10h
-
+	ClearScreen
+	SetCursorPosition 0x02 0x00
 	jmp DOSLDR
 
-include "..\kernel\TxtPrint.inc" ; because TxtPrint isn't loaded yet
+include "..\kernel\TxtPrint.inc"
 
-ClearMes:
-	mov ah,6
-	mov al,0
-	mov bh,7
-	mov cx,0
-	mov dx,0184Fh
-	int 10h
-	ret
-;----
 fail_ldr db 'DOSLDR is missing.',0
 fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
-;----
-times (512 - 2 - ($ - start)) db 0
-dw 0AA55h; FAT12 bootable medium
+
+	FAT12_MBR_end ; жёсткий диск

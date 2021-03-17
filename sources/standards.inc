@@ -7,8 +7,14 @@
 ;  стало проще."
 ; - Diicorp95
 
-FDD1 equ 0x00 ; Floppy Disk Drive 1/80
-HDD1 equ 0x80 ; Hard Disk Drive 1/(80+x)
+DOSLDR		equ 0x00000500
+   DOSLDR_short equ 0x0500
+BSOD		equ 0x00001000
+
+FDD1 equ 0x00 ; Floppy Disk Drive 0x01/0x80
+HDD1 equ 0x80 ; Hard Disk Drive 0x01
+
+Standard_video_mode db 2
 
 macro zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
@@ -103,6 +109,16 @@ macro TryRead index, drvindex, memaddr, reptimes {
 	int 13h
 	jc @b
 @@:
+}
+
+macro ClearScreen {
+	mov ah,6
+	mov al,0
+	mov bh,7
+	mov cx,0
+	mov dx,0184Fh
+	int 10h
+	ret
 }
 
 macro SetCursorPosition rgDH, rgDL {

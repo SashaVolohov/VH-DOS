@@ -1,5 +1,6 @@
 ; Операционная система VH-DOS
 ; © Саша Волохов, 2020-2021.
+; Многочисленные редакции © Артём Котов. 2021.
 
 ; 133 строка (если это 4 строка) - обнаружить, какая программа предполагалась под сектором №7
 
@@ -10,27 +11,30 @@
 
 include "..\standards.inc"
 
+macro PrintOut string_offset {
+	mov bp,string_offset
+	call TxtPrint
+}
+
+macro ClearGetch {
+	mov ah,10h
+    int 16h
+}
+
 start:
 ;--------------;
 ; СЕКТОР №3
-	mov ax,2
+	mov ax,Standard_video_mode
 	int 10h
 
-	mov bp,fail_ldr
-	call TxtPrint
-
-	mov ah,2
-	mov bh,0
-	mov dx,00100h
-	int 10h
+	PrintOut fail_ldr
+	SetCursorPosition 0x01 0x00
+	PrintOut ctrlaltdel_msg
 	
-	mov bp,ctrlaltdel_msg
-	call TxtPrint
-
 	ClearExtSeg
 	TryRead 2, 0, 0x0BD0, 4
 	jmp Step2
-
+	
 	call ClearScreen
 	mov ah,2
 	mov bh,0
@@ -50,66 +54,50 @@ Step2:
 	mov ax,2
 	int 10h
 	
-	mov ah,2
-	mov bh,0
-	xor dx,dx
-	int 10h
+	SetCursorPosition 0x00 0x00
+	PrintOut setup_welcome
 	
-	mov bp,setup_welcome
-	call TxtPrint
+	SetCursorPosition 0x02 0x00
+	PrintOut setup_welcome_2
 	
-	mov ah,2
-	mov bh,0
-	mov dh,2
-	mov dl,0
-	int 10h
+	SetCursorPosition 0x03 0x00
+	PrintOut ctrlaltdel_msg
 	
-	mov bp,setup_welcome_2
-	call TxtPrint
+	SetCursorPosition 0x05 0x00
 	
-	SetCursorPosition 0x0300
+	ClearGetch
 	
-	mov bp,ctrlaltdel_msg
-	call TxtPrint
-	
-	mov ah,2
-	mov bh,0
-	mov dh,5
-	mov dl,0
-	int 10h
-	
-	mov ah,10h
-    int 16h
-	cmp al,0Dh
+	cmp al,0x0D
+   ; jnz start
     jz install
 	jmp start
 	
 install:
-	; Запись <utils\command.bin>, 6 -> 4
-	TryRead 6, FDD1, 0x0900, 4 ; пытаться считать СЕКТОР №6 (см. /compile.asm) -> 0x0AD0, 4 раза
+	; Запись <boot\boot.bin>, 6 -> 3
+	TryRead 6, FDD1, 0x0900, 4 ; пытаться считать СЕКТОР №6 -> 0x0AD0, 4 раза
 	FormatSector 3, HDD1 ; подготовка 3-го сектора жёсткого диска
 	ClearExtSeg ; чистка ES
 	WriteSector 3, HDD1, 0x0900 ; запись из 0x0900 на СЕКТОР №4 жёсткого диска
 
-	; Запись <utils\
-	TryRead 7, FDD1, 0x0AD0, 4 ; пытаться считать СЕКТОР №7 (см. /compile.asm, бывший /utils/cls.bin) -> 0x0AD0, 4 раза
+	; Запись <boot\DOSLDR.bin>, 7 -> 4
+	TryRead 7, FDD1, 0x0AD0, 4 ; пытаться считать СЕКТОР №7 -> 0x0AD0, 4 раза
 	FormatSector 4, HDD1 ; подготовка 4-го сектора жёсткого диска
 	ClearExtSeg ; чистка ES
 	WriteSector 4, HDD1, 0x0AD0 ; запись из 0x0AD0 на СЕКТОР №4 жёсткого диска
 
-	mov ax,2 ; видеорежим 2
+	; Запись <utils\command.bin>, 8 -> 4
+	TryRead 7, FDD1, 0x0AD0, 4 ; пытаться считать СЕКТОР №7 -> 0x0AD0, 4 раза
+	FormatSector 4, HDD1 ; подготовка 4-го сектора жёсткого диска
+	ClearExtSeg ; чистка ES
+	WriteSector 4, HDD1, 0x0AD0 ; запись из 0x0AD0 на СЕКТОР №4 жёсткого диска
+
+	mov ax,Standard_video_mode
     int 10h
 
-	mov ah,2
-	mov bh,0
-	xor dx,dx
-	int 10h
-
-	mov bp,setup_complete
-	call TxtPrint
-
-	mov ah,10h
-    int 16h
+	SetCursorPosition 0x00 0x00
+	PrintOut setup_complete
+	
+	ClearGetch
 
 Restart:
 ; Тёплая перезагрузка компьютера

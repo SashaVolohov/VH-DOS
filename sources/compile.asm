@@ -31,14 +31,14 @@ begin:	; ДИСКЕТА С УСТАНОВЩИКОМ
 	; СЕКТОРЫ №3, 4, 5
 	file "setup\boot.bin",512 ; Первый загрузчик (MBR) установщик > 512 байт
 	
-	; СЕКТОР №5
+	; СЕКТОР №6
 	file "boot\boot.bin",512 ; Загрузчик системы [1]
 
-	; СЕКТОР №6
+	; СЕКТОР №7
 	file "boot\DOSLDR.bin" ; Загрузчик системы [2]
 	zerobytes 512
 	
-	; СЕКТОР №7
+	; СЕКТОР №8
 	file "utils\command.bin" ; COMMAND.SYS
 	zerobytes 512
 	
