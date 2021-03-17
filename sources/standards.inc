@@ -8,7 +8,7 @@
 ; - Diicorp95
 
 DOSLDR		equ 0x00000500
-   DOSLDR_short equ 0x0500
+DOSLDR_short    equ 0x0500
 BSOD		equ 0x00001000
 
 FDD1 equ 0x00 ; Floppy Disk Drive 0x01/0x80
@@ -124,6 +124,7 @@ macro ClearScreen {
 macro SetCursorPosition rgDH, rgDL {
 	mov ah,2
 	mov bh,0
-	mov dx,rgDH rgDL
+	mov dh,rgDH
+	mov dl,rgDL
 	int 10h
 }

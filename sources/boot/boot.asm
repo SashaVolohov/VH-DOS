@@ -21,19 +21,21 @@ start:
 	int 10h
 
 	SetCursorPosition 0x00 0x00
-	PrintOut fail_ldr
+	PrintOut fail_ldr_str1
 	SetCursorPosition 0x01 0x00
-	PrintOut fail_ldr_two
+	PrintOut fail_ldr_str2
+	
 	ClearExtSeg
 	ReadSector 2, HDD1, DOSLDR
 	jmp DOSLDR
-	ClearScreen
-	SetCursorPosition 0x02 0x00
-	jmp DOSLDR
+	
+	ClearScreen ; ?
+	SetCursorPosition 0x02 0x00 ; ?
+	jmp DOSLDR ; ?
 
 include "..\kernel\TxtPrint.inc"
 
-fail_ldr db 'DOSLDR is missing.',0
-fail_ldr_two db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
+fail_ldr_str1 db 'DOSLDR is missing.',36+1 dup (0)
+fail_ldr_str2 db 'Press <Ctrl>-<Alt>-<Del> to restart.',0
 
 	FAT12_MBR_end ; жёсткий диск
