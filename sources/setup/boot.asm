@@ -7,7 +7,7 @@
 ; Данный файл служит для установки ОС.
 ; Загружается по адресу 0000:7E00
 
-	org 07C00h
+	org 0
 
 include "..\standards.inc"
 
@@ -28,14 +28,14 @@ start:
 	int 10h
 
 	PrintOut fail_ldr
-	SetCursorPosition 0x01 0x00
+	SetCursorPosition 0x01, 0x00
 	PrintOut ctrlaltdel_msg
 	
 	ClearExtSeg
 	TryRead 2, 0, 0x0BD0, 4
 	jmp Step2
 	
-	call ClearScreen
+	call addr_ClearScreen
 	mov ah,2
 	mov bh,0
 	mov dh,2
@@ -54,16 +54,16 @@ Step2:
 	mov ax,2
 	int 10h
 	
-	SetCursorPosition 0x00 0x00
+	SetCursorPosition 0x00, 0x00
 	PrintOut setup_welcome
 	
-	SetCursorPosition 0x02 0x00
+	SetCursorPosition 0x02, 0x00
 	PrintOut setup_welcome_2
 	
-	SetCursorPosition 0x03 0x00
+	SetCursorPosition 0x03, 0x00
 	PrintOut ctrlaltdel_msg
 	
-	SetCursorPosition 0x05 0x00
+	SetCursorPosition 0x05, 0x00
 	
 	ClearGetch
 	
@@ -94,7 +94,7 @@ install:
 	mov ax,Standard_video_mode
     int 10h
 
-	SetCursorPosition 0x00 0x00
+	SetCursorPosition 0x00, 0x00
 	PrintOut setup_complete
 	
 	ClearGetch

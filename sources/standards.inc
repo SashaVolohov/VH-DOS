@@ -7,14 +7,17 @@
 ;  стало проще."
 ; - Diicorp95
 
-DOSLDR		equ 0x00000500
-DOSLDR_short    equ 0x0500
-BSOD		equ 0x00001000
+addr_DOSLDR			equ 0x00000500
+addr_DOSLDR_short	equ 0x0500
+addr_BSOD			equ 0x00001000
+addr_command_reboot	equ 0x000007EE
+addr_MultiTxtPrint	equ 0x00000A30
+addr_ClearScreen	equ 0x00000BAD
 
 FDD1 equ 0x00 ; Floppy Disk Drive 0x01/0x80
 HDD1 equ 0x80 ; Hard Disk Drive 0x01
 
-Standard_video_mode db 2
+Standard_video_mode equ 2
 
 macro zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
@@ -44,7 +47,7 @@ macro FAT12_MBR {
 }
 
 macro FAT12_MBR_end {
-	db (512 - 2 - (07C00h - $)) dup (0)
+	db (512 - 2 - (0 - $)) dup (0)
 	dw 0AA55h
 }
 
@@ -91,6 +94,11 @@ macro TryRead index, drvindex, memaddr, reptimes {
 	mov cx,reptimes
 	push cx
 @@:
+	pop cx
+	cmp cx,cx
+	jz @f
+	dec cx
+	push cx
 	mov ah,0
 	mov dl,drvindex
 	int 13h

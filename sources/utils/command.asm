@@ -1,4 +1,4 @@
-	org 07C00h
+	org 0
 
 include "..\standards.inc"
 

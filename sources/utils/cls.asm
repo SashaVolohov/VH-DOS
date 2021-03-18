@@ -1,4 +1,4 @@
-	org 007D0h
+	org 0
 
 Task_command	equ 00000:00600h
 

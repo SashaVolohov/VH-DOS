@@ -1,4 +1,4 @@
-	org 07C00h
+	org 0
 
 BSOD equ 0x00001000
 

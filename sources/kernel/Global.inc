@@ -1,4 +1,4 @@
-	org 07C00h
+	org 0
 
 VersionInfo:
 	mov bp,verinfo_text
@@ -17,7 +17,7 @@ verinfo_text db 'VH-DOS '
 	db '. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
 cmd_prompt db 'C:\>',0
 
-ClearScreen:
+ClearScreen_ca:
 	mov ah,6
 	xor cx,cx
 	mov dx,0184Fh

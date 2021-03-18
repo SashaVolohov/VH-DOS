@@ -4,7 +4,7 @@
 ; Данный файл служит для запуска ОС, и загружает следующие программы в память:
 ; 	/utils/command.asm
 
-	org 07C00h
+	org 0
 
 MACRO load_in_mem sector, address {
 	xor ax,ax

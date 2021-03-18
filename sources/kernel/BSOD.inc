@@ -1,28 +1,27 @@
-	org 07C00h
+	org 0
 
-command_reboot	equ 0000007EEh
-MultiTxtPrint	equ 000000A30h
+include "..\standards.inc"
 
 BSOD:
 	mov ax,2
 	int 10h
 
-	mov ax,00900h
-	mov bx,0001Fh
-	mov cx,2000d
+	mov ax,0x0900
+	mov bx,0x001F
+	mov cx,2000
 	int 10h
 
 	mov ah,2
 	mov bh,0
-	mov dx,00202h
+	mov dx,0x0202
 	int 10h
 
 	mov bp,BSOD_part01
-	call MultiTxtPrint
+	call addr_MultiTxtPrint
 
 	mov ah,10h
 	int 16h
 	
-	jmp command_reboot
+	jmp addr_command_reboot
 
 BSOD_part01 db 'VH-DOS: Fatal error',0Dh,0Dh,'Error has been occured during system operation.',0

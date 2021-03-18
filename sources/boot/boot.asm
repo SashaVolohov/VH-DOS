@@ -5,7 +5,7 @@
 ; Данный файл служит для запуска ОС.
 ; Этот файл находится в MBR дискеты/жёсткого диска. Загружается по адресу 0000:7C00
 
-	org 07C00h
+	org 0
 
 include "..\standards.inc"
 
@@ -20,18 +20,18 @@ start:
 	mov ax,Standard_video_mode
 	int 10h
 
-	SetCursorPosition 0x00 0x00
+	SetCursorPosition 0x00, 0x00
 	PrintOut fail_ldr_str1
-	SetCursorPosition 0x01 0x00
+	SetCursorPosition 0x01, 0x00
 	PrintOut fail_ldr_str2
 	
 	ClearExtSeg
-	ReadSector 2, HDD1, DOSLDR
-	jmp DOSLDR
+	ReadSector 2, HDD1, addr_DOSLDR
+	jmp addr_DOSLDR
 	
 	ClearScreen ; ?
-	SetCursorPosition 0x02 0x00 ; ?
-	jmp DOSLDR ; ?
+	SetCursorPosition 0x02, 0x00 ; ?
+	jmp addr_DOSLDR ; ?
 
 include "..\kernel\TxtPrint.inc"
 
