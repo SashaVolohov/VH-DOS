@@ -7,8 +7,10 @@ set src_cmds=sources\utils
 set src_stp=sources\setup
 
 rem Compiling OS
-for %%a in (%src_boot%\*.asm %src_krn%\*.asm %src_cmds%\*.asm %src_stp%\*.asm) do (
+for %%a in (%src_boot%\*.asm %src_krn%\*.asm %src_krn%\*.inc %src_cmds%\*.asm %src_stp%\*.asm) do (
+	echo:%%~a
 	%fasm% %%~a
+	echo:
 	if "%errorlevel%" gtr "0" (goto endofcompl)
 )
 
