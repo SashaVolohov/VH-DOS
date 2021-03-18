@@ -2,8 +2,6 @@
 ; © Саша Волохов, 2020-2021.
 ; Многочисленные редакции © Артём Котов. 2021.
 
-; 133 строка (если это 4 строка) - обнаружить, какая программа предполагалась под сектором №7
-
 ; Данный файл служит для установки ОС.
 ; Загружается по адресу 0000:7E00
 
@@ -72,25 +70,31 @@ Step2:
     jz install
 	jmp start
 	
-install:
+install: ; Часть установки
 	; Запись <boot\boot.bin>, 6 -> 3
-	TryRead 6, FDD1, 0x0900, 4 ; пытаться считать СЕКТОР №6 -> 0x0AD0, 4 раза
+	TryRead 6, FDD1, 0x0900, 4 ; пытаться считать СЕКТОР №6 -> 0x0500, 4 раза
 	FormatSector 3, HDD1 ; подготовка 3-го сектора жёсткого диска
 	ClearExtSeg ; чистка ES
-	WriteSector 3, HDD1, 0x0900 ; запись из 0x0900 на СЕКТОР №4 жёсткого диска
+	WriteSector 3, HDD1, 0x0500 ; запись из 0x0500 на СЕКТОР №3 жёсткого диска
 
 	; Запись <boot\DOSLDR.bin>, 7 -> 4
-	TryRead 7, FDD1, 0x0AD0, 4 ; пытаться считать СЕКТОР №7 -> 0x0AD0, 4 раза
+	TryRead 7, FDD1, 0x0500, 4 ; пытаться считать СЕКТОР №7 -> 0x0500, 4 раза
 	FormatSector 4, HDD1 ; подготовка 4-го сектора жёсткого диска
 	ClearExtSeg ; чистка ES
-	WriteSector 4, HDD1, 0x0AD0 ; запись из 0x0AD0 на СЕКТОР №4 жёсткого диска
+	WriteSector 4, HDD1, 0x0500 ; запись из 0x0500 на СЕКТОР №4 жёсткого диска
 
-	; Запись <utils\command.bin>, 8 -> 4
-	TryRead 7, FDD1, 0x0AD0, 4 ; пытаться считать СЕКТОР №7 -> 0x0AD0, 4 раза
-	FormatSector 4, HDD1 ; подготовка 4-го сектора жёсткого диска
+	; Запись <utils\command.bin>, 8 -> 5
+	TryRead 8, FDD1, 0x0500, 4 ; пытаться считать СЕКТОР №8 -> 0x0500, 4 раза
+	FormatSector 5, HDD1 ; подготовка 5-го сектора жёсткого диска
 	ClearExtSeg ; чистка ES
-	WriteSector 4, HDD1, 0x0AD0 ; запись из 0x0AD0 на СЕКТОР №4 жёсткого диска
+	WriteSector 5, HDD1, 0x0500 ; запись из 0x0500 на СЕКТОР №5 жёсткого диска
 
+	; Запись <kernel\BSOD.bin>, 9 -> 6
+	TryRead 9, FDD1, 0x0500, 4 ; пытаться считать СЕКТОР №9 -> 0x0500, 4 раза
+	FormatSector 6, HDD1 ; подготовка 6-го сектора жёсткого диска
+	ClearExtSeg ; чистка ES
+	WriteSector 6, HDD1, 0x0500 ; запись из 0x0500 на СЕКТОР №6 жёсткого диска
+	
 	mov ax,Standard_video_mode
     int 10h
 
@@ -104,8 +108,9 @@ Restart:
 	mov ax,40h
 	push ax
 	pop ds
-	mov word ptr ds:72h,1234h
-	mov ax,0FFFFh
+	mov word [ds:72h],1234h
+	xor ax,ax
+	not ax
 	push ax
 	mov ax,0
 	push ax

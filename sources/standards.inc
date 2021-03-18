@@ -7,12 +7,12 @@
 ;  стало проще."
 ; - Diicorp95
 
-addr_DOSLDR			equ 0x00000500
-addr_DOSLDR_short	equ 0x0500
-addr_BSOD			equ 0x00001000
-addr_command_reboot	equ 0x000007EE
-addr_MultiTxtPrint	equ 0x00000A30
-addr_ClearScreen	equ 0x00000BAD
+addr_Command		equ 0x1000
+addr_DOSLDR			equ 0x0500
+addr_BSOD			equ 0x1000
+addr_command_reboot	equ 0x07EE
+addr_MultiTxtPrint	equ 0x0A30
+addr_ClearScreen	equ 0x0BAD
 
 FDD1 equ 0x00 ; Floppy Disk Drive 0x01/0x80
 HDD1 equ 0x80 ; Hard Disk Drive 0x01
@@ -57,6 +57,7 @@ macro FormatSector sector, drvindex {
 	xor dh,dh
 	mov dl,drvindex
 	int 13h
+	sti
 }
 
 macro ClearExtSeg {
@@ -67,27 +68,29 @@ macro ClearExtSeg {
 macro ReadSector index, drvindex, memaddr {
 	mov ax,0x0201
 	mov bx,memaddr
-	if drvindex >= 1
+	;;>?1>if drvindex >= 1
 		mov cl,drvindex
 		xor ch,ch; HEAD = 1
-	else
-		xor cx,cx
-	end if
+	;>?1>else
+	;;>?1>	xor cx,cx
+	;;>?1>end if
 	xor dx,dx
 	int 13h
+	sti
 }
 
 macro WriteSector index, drvindex, memaddr {
 	mov ax,0x0301
 	mov bx,memaddr
 	mov cx,index
-	if drvindex >= 1
+	;>?1>if drvindex >= 1
 		mov dl,drvindex
 		xor dh,dh; HEAD = 1
-	else
-		xor dx,dx
-	end if
+	;>?1>else
+	;>?1>	xor dx,dx
+	;>?1>end if
 	int 13h
+	sti
 }
 
 macro TryRead index, drvindex, memaddr, reptimes {
@@ -102,19 +105,21 @@ macro TryRead index, drvindex, memaddr, reptimes {
 	mov ah,0
 	mov dl,drvindex
 	int 13h
+	sti
 	
 	ClearExtSeg
 
 	mov ax,00201h
 	mov bx,memaddr
 	mov cx,index
-	if drvindex >= 1
+	;>?1>if drvindex >= 1
 		mov dl,drvindex
 		xor dh,dh; HEAD = 1
-	else
-		xor dx,dx
-	end if
+	;>?1>else
+	;>?1>	xor dx,dx
+	;>?1>end if
 	int 13h
+	sti
 	jc @b
 @@:
 }

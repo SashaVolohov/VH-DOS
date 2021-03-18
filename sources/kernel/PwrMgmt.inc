@@ -1,13 +1,13 @@
 	org 0
 
-BSOD equ 0x00001000
+include "..\standards.inc"
 
 Restart:
 ; Тёплая перезагрузка компьютера
 	mov ax,40h
 	push ax
 	pop ds
-	mov word ptr ds:72h,1234h
+	mov word [ds:72h],1234h
 	mov ax,0FFFFh
 	push ax
 	mov ax,0
@@ -56,4 +56,5 @@ ACPI_Shutdown:
 	jc ACPI_Shutdown@ThrowError
 	ret
 ACPI_Shutdown@ThrowError:
-	jmp BSOD
+	sti
+	int 0x03

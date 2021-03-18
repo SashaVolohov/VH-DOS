@@ -1,6 +1,6 @@
 	org 0
 
-Task_command	equ 00000:00600h
+include "..\standards.inc"
 
 Task_cls: ; занимает 26 байт.
           ; на запас - ещё 4 байта.
@@ -21,4 +21,4 @@ Task_cls: ; занимает 26 байт.
 	mov dl,0
 	int 10h
 
-	jmp Task_command
+	jmp addr_Command

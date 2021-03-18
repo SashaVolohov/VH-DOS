@@ -10,7 +10,7 @@
 ; ` align 512
 ; *Файл будет занимать 1 сектор, следственно должен быть >= 512 байт!
 
-	org 07C00h
+	org 0
 
 macro zerobytes length {
 	db length - 1 - ($ + length - 1) mod (length) dup 0
@@ -41,7 +41,11 @@ begin:	; ДИСКЕТА С УСТАНОВЩИКОМ
 	; СЕКТОР №8
 	file "utils\command.bin" ; COMMAND.SYS
 	zerobytes 512
-	
+
+	; СЕКТОР №9
+	file "kernel\BSOD.inc" ; BSOD
+	zerobytes 512
+
 	zerobytes HEADS*SPT*512 ; Лично я не могу предположить, что здесь имелось ввиду
 
-db (Diskette_Size - ($ - 07C00h)) dup (0)
+db (Diskette_Size - ($ - 0)) dup (0)
