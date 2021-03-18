@@ -1,0 +1,111 @@
+	org 0
+
+VersionInfo:
+	mov bp,verinfo_text
+	call Global_TxtPrint
+	add dh,2			; debug
+	mov dl,0			; debug
+	call SetCursorPos	; debug
+	mov bp,cmd_prompt
+	call Global_TxtPrint
+	add dl,4			; debug
+	call SetCursorPos	; debug
+	jmp ClearBuffer
+	ret
+verinfo_text db 'VH-DOS '
+	file "..\version.txt"
+	db '. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
+cmd_prompt db 'C:\>',0
+
+ClearScreen_ca:
+	mov ah,6
+	xor cx,cx
+	mov dx,0184Fh
+	mov al,0
+	mov bh,7
+	int 10h
+	ret
+
+ClearScreen_cl:
+	mov ah,6
+	mov bx,7
+	mov al,0
+	mov cx,0
+	mov dx,0184Fh
+	int 10h
+
+	mov ah,2
+	mov bh,0
+	mov dx,0
+	int 10h
+	ret
+
+SetCursorPos:
+	cmp dh,26 ; ???
+	jz @f ; ???
+	cmp dh,27 ; ???
+	jz @f ; ???
+	cmp dh,28 ; ???
+	jz @f ; ???
+	cmp dh,29 ; ???
+	jz @f ; ???
+
+	mov ah,2
+	xor bh,bh
+	int 10h
+	ret
+@@:
+	mov ah,6
+	xor cx,cx
+	mov dx,0184Fh
+	mov al,0
+	mov bh,7
+	int 10h
+	ret
+	
+stringd equ 0x2000
+stringd_len equ 0x33
+CommandQ equ 0x00000600
+
+ClearBuffer:
+	mov cx,50d
+ClearBuffer@Loop1:
+	mov bx,cx
+	add bx,stringd
+	mov byte [ds:bx],0
+	loop ClearBuffer@Loop1
+	jmp CommandQ
+	
+Global_TxtPrint:
+	mov si,bp
+	xor bx,bx
+Global_TxtPrint@01:
+	cmp bx,0FFFFh
+	jz Global_TxtPrint@02
+	mov al,byte [si+bx]
+	cmp al,0
+	jz Global_TxtPrint@02
+	push bx ax
+	pop ax
+	mov ah,09h
+	mov bh,0
+	mov bl,07h
+	mov cx,1
+	int 10h
+	mov ah,03h
+	xor bx,bx
+	int 10h
+	mov ah,02h
+	xor bx,bx
+	inc dl
+	int 10h
+	pop bx
+	inc bx
+	jmp Global_TxtPrint@01
+Global_TxtPrint_Data01 db 0
+Global_TxtPrint@02:
+	xor bx,bx
+	xor bp,bp
+	xor si,si
+	xor ax,ax
+	ret
