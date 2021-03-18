@@ -3,8 +3,10 @@ GHNRandom:
 
 	mov ax,0079Dh ; простое число
 	xor cx,cx; будет на выходе
-	push word 0 ; для ax
-	push word 0 ; для dx
+	;>1>;push word 0 ; для ax
+	;>1>;push word 0 ; для dx
+	push cx
+	push cx
 GHNRandom@01:
 	pop bx
 	cmp bx,7
