@@ -34,16 +34,7 @@ macro Initial_Bootcode {
 }
 
 macro FAT12_MBR {
-	db 0xEB,0x58,0x90
-	db 'VH-DOS',3 dup (0)
-	db 0x02,2 dup (0x01),0,0x02
-	db 0xE0,0x00,0x40,0x0B,0xF0
-	db 0x09,0x00,0x12,0x00,0x02
-	db 11 dup (0)
-	db 0x29,0xE2,0x46,0x4E,0x29
-	db 11 dup (0x20)
-	db 046h,041h,054h,031h,032h,3 dup (0x20)
-	db 28 dup (0)
+	include "..\FAT12_BPB_generator.asm"
 }
 
 macro FAT12_MBR_end {
@@ -53,7 +44,8 @@ macro FAT12_MBR_end {
 
 macro FormatSector sector, drvindex {
 	mov ax,0x0501
-	mov cx,sector
+	xor ch,ch
+	mov cl,sector
 	xor dh,dh
 	mov dl,drvindex
 	int 13h
