@@ -1,6 +1,6 @@
 # Operating system VH-DOS
 ### Current usage
-At this moment, the repository is used only as a kernel procedures collection. They are really well tested.
+At this moment, the repository is used only as a [kernel procedures collection](https://github.com/SashaVolohov/VH-DOS/tree/master/sources/kernel). They are really well tested.
 
 ### System Requirements
 | System Component | At least this |
