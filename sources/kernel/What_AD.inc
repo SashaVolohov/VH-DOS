@@ -1,6 +1,6 @@
 ; Video adapter detection
 ; Original code (c) Sergijj @ 16/02/2007
-; Processed Larry Holst
+; Processed by Larry Holst
 
 WHAT_AD:
 ; Procedure WHAT_AD
