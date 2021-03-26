@@ -4,13 +4,7 @@
 
 WHAT_AD:
 ; Procedure WHAT_AD
-; Output:
-; AL =
-;      0 > VGA
-;      1 > EGA
-;      2 > CGA
-;      3 > MDA
-;      4 > unknown
+
 	PUSH DX
 	PUSH BX
 	PUSH CX
