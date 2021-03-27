@@ -14,6 +14,8 @@ Currently, the repository is used only as a [kernel procedures collection](https
 ## System Requirements
 | System Component | At least this |
 | :--------------- | ------------: |
+| BIOS | IBM PC/AT-compatible |
+| *UEFI* | Not supported |
 | CPU | 186 |
 | FPU | not required |
 | Video Adapter | MDA/CGA/EGA |
