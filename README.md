@@ -6,7 +6,7 @@
 | Stage | Early alpha |
 | Global bugs count | ~4 |
 | Dialect | Flat Assembler |
-| Building OS | Windows XP and newer |
+| Building OS | Microsoft® Windows® XP and newer |
 
 ## Current Usage
 Currently, the repository is used only as a [kernel procedures collection](https://github.com/SashaVolohov/VH-DOS/tree/master/sources/kernel). They are really well tested.
