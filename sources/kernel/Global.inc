@@ -12,9 +12,9 @@ VersionInfo:
 	call SetCursorPos	; debug
 	jmp ClearBuffer
 	ret
-verinfo_text db 'VH-DOS '
+verinfo_text:
 	file "..\version.txt"
-	db '. (c) VH-DOS development team. Licensed under GNU GPLv3 license.',0
+	db 0
 cmd_prompt db 'C:\>',0
 
 ClearScreen_ca:
