@@ -1,8 +1,15 @@
 # Operating system VH-DOS
-### Current Usage
+## Description Table
+| Type | Description |
+| ---- | ----------- |
+| Version | 0.1.4α |
+| Stage | Early alpha |
+| Global bugs count | ~4 |
+
+## Current Usage
 Currently, the repository is used only as a [kernel procedures collection](https://github.com/SashaVolohov/VH-DOS/tree/master/sources/kernel). They are really well tested.
 
-### System Requirements
+## System Requirements
 | System Component | At least this |
 | :--------------- | ------------: |
 | CPU | 186 |
@@ -11,12 +18,34 @@ Currently, the repository is used only as a [kernel procedures collection](https
 | Hard disk capacity | 4 Kilobytes |
 | PC Speaker | Preferably to have |
 
-### Developers Team
-* [Larry Holst](https://github.com/Diicorp95) — *README.md, LICENSE, main active programmer*
-* [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel: 1.0α*
-* Anton Fedorov — *core: 0.7α*
+## Developers Team
+### Bootloader
+| Changes | Author | Since version |
+| ------- | ------ | ------------- |
+| Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
+| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+### Core
+| Changes | Author | Since version |
+| ------- | ------ | ------------- |
+| Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
+| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+### Setup disk
+| Changes | Author | Since version |
+| ------- | ------ | ------------- |
+| Fixed, organized | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
+| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+### README.md
+| Changes | Author | Since version |
+| ------- | ------ | ------------- |
+| Originals | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
+| Older version | [Sasha Volohov](https://github.com/SashaVolohov) | - |
+### Kernel procedures
+| Changes | Author | Since version |
+| ------- | ------ | ------------- |
+| Fixes, organization, new procedures | [Larry Holst](https://github.com/Diicorp95) | 0.1.4α |
+| Originals | Anton Fedorov | 0.7α |
 
-### To-Do
+## To-Do
 New ideas will be considered by moderators
 - [ ] Fixing bugs, see issues: [#3](https://github.com/SashaVolohov/VH-DOS/issues/3) [#2](https://github.com/SashaVolohov/VH-DOS/issues/2)
 - [ ] Bring OS to work!
@@ -30,7 +59,7 @@ New ideas will be considered by moderators
 - [ ] User access control system, similar to Linux
 - [ ] `raa` command - full administrator access
 
-### Raw Statistics
+## Raw Statistics
 Total amount of compiled bytes on this moment
 | Part of OS | Size in bytes |
 | :--------- | ------------: |
