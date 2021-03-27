@@ -12,14 +12,14 @@ Currently, the repository is used only as a [kernel procedures collection](https
 | PC Speaker | Preferably to have |
 
 ### Developers Team
-* [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel*
-* Anton Fedorov — *core, ver. 0.9beta*
-* [Larry Holst, also known as Artem Kotov](https://github.com/Diicorp95) — *README.md, LICENSE, editing and creating*
+* [Larry Holst](https://github.com/Diicorp95) — *README.md, LICENSE, main active programmer*
+* [Sasha Volohov](https://github.com/SashaVolohov) — *bootloader, command line, kernel: 1.0α*
+* Anton Fedorov — *core: 0.7α*
 
 ### To-Do
 New ideas will be considered by moderators
 - [ ] Fixing bugs, see issues: [#3](https://github.com/SashaVolohov/VH-DOS/issues/3) [#2](https://github.com/SashaVolohov/VH-DOS/issues/2)
-- [ ] Bring OS to work
+- [ ] Bring OS to work!
 - [X] ~~ACPI commands: `shutdown`, `restart`~~, add `shutdown` command
 - [X] Do a global bootloader upgrade
 - [ ] Code library for using FAT32
