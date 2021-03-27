@@ -19,6 +19,7 @@ Currently, the repository is used only as a [kernel procedures collection](https
 ### To-Do
 New ideas will be considered by moderators
 - [ ] Fixing bugs, see issues: [#3](https://github.com/SashaVolohov/VH-DOS/issues/3) [#2](https://github.com/SashaVolohov/VH-DOS/issues/2)
+- [ ] Bring OS to work
 - [X] ~~ACPI commands: `shutdown`, `restart`~~, add `shutdown` command
 - [X] Do a global bootloader upgrade
 - [ ] Code library for using FAT32
