@@ -32,7 +32,7 @@ Currently, the repository is used only as a [kernel procedures collection](https
 ### Setup disk
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
-| Fixed, organized | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
+| Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
 | Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
 ### README.md
 | Changes | Author | Since version |
@@ -44,6 +44,17 @@ Currently, the repository is used only as a [kernel procedures collection](https
 | ------- | ------ | ------------- |
 | Fixes, organization, new procedures | [Larry Holst](https://github.com/Diicorp95) | 0.1.4α |
 | Originals | Anton Fedorov | 0.7α |
+
+## Version time log
+Timestamps are specified in GMT+03:00 24-hour format.
+Dates are specified in DD.MM.YYYY format
+| Version | Date | Time |
+| ------- | ---- | ---- |
+| 0.1.0α | 14.02.2021 | 08:00 |
+| 0.1.1α | 25.02.2021 | 19:00 |
+| 0.1.2α | 18.03.2021 | 16:35 |
+| 0.1.3α | 23.03.2021 | 16:35 |
+| 0.1.4α | 26.03.2021 | 18:20 |
 
 ## To-Do
 New ideas will be considered by moderators
