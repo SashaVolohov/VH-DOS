@@ -4,7 +4,7 @@
 ; Данный файл служит для запуска ОС, и загружает следующие программы в память:
 ; 	/utils/command.asm
 
-	org 0
+	org 0x7C00
 
 include "..\standards.inc"
 
