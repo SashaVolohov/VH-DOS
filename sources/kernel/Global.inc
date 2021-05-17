@@ -1,5 +1,3 @@
-	org 0
-
 VersionInfo:
 	mov bp,verinfo_text
 	call Global_TxtPrint
