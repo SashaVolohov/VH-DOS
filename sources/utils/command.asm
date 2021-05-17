@@ -1,4 +1,4 @@
-	org 0
+	org 0x0600
 
 include "..\standards.inc"
 
