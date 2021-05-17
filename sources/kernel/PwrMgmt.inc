@@ -1,5 +1,3 @@
-	org 0
-
 include "..\standards.inc"
 
 Restart:
