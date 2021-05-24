@@ -24,7 +24,7 @@ start:
 	ReadSector 2, HDD1, addr_DOSLDR
 	jc DiskError
 	jmp addr_DOSLDR
-	
+
 DiskError:
 	ClearScreen ; ?
 	SetCursorPosition 0x02, 0x00 ; ?

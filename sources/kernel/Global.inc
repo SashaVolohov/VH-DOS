@@ -1,18 +1,19 @@
 VersionInfo:
 	mov bp,verinfo_text
 	call Global_TxtPrint
-	add dh,2			; debug
-	mov dl,0			; debug
+	add dh,2		; debug
+	mov dl,0		; debug
 	call SetCursorPos	; debug
 	mov bp,cmd_prompt
 	call Global_TxtPrint
-	add dl,4			; debug
+	add dl,4		; debug
 	call SetCursorPos	; debug
 	jmp ClearBuffer
 	ret
 verinfo_text:
 	file "..\version.txt"
 	db 0
+
 cmd_prompt db 'C:\>',0
 
 ClearScreen_ca:
@@ -63,7 +64,7 @@ SetCursorPos:
 	
 stringd equ 0x2000
 stringd_len equ 0x33
-CommandQ equ 0x00000600
+CommandQ equ 0x0600
 
 ClearBuffer:
 	mov cx,50d

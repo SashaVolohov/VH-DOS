@@ -22,7 +22,7 @@ GHNRandom@01:
 	mov ah,02h
 	int 01Ah	
 	jc GHNRandom@01 ; если получение пришлось
-	                    ; на   момент  обновления
+	                ; на момент обновления
 	xor ch,dl
 	xor cl,dh
 	cmp cl,dh
