@@ -28,22 +28,22 @@ Currently, the repository is used only as a [kernel procedures collection](https
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
 | Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
-| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+| Originals | [Alexander Volohov](https://github.com/SashaVolohov) | 0.1.0α |
 ### Core
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
 | Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
-| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+| Originals | [Alexander Volohov](https://github.com/SashaVolohov) | 0.1.0α |
 ### Setup disk
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
 | Fixes, organization | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
-| Originals | [Sasha Volohov](https://github.com/SashaVolohov) | 0.1.0α |
+| Originals | [Alexander Volohov](https://github.com/SashaVolohov) | 0.1.0α |
 ### README.md
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
 | Originals | [Larry Holst](https://github.com/Diicorp95) | 0.1.1α |
-| Older version | [Sasha Volohov](https://github.com/SashaVolohov) | - |
+| Older version | [Alexander Volohov](https://github.com/SashaVolohov) | - |
 ### Kernel procedures
 | Changes | Author | Since version |
 | ------- | ------ | ------------- |
