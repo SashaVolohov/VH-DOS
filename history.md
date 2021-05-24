@@ -20,7 +20,7 @@
 ### 13.02.2021
 * [Larry Holst](https://github.com/Diicorp95) joined the development process, while others are inactive now.
   * This file is renamed to **history.txt**.
-  * [README.md](https://github.com/SashaVolohov/VH-DOS/blob/master/README.md) has beeen created and filled with GitHub formatting standards.
+  * [README.md](https://github.com/SashaVolohov/VH-DOS/blob/master/README.md) has been created and filled with GitHub formatting standards.
 
 ### 02.04.2020
 * The development is resumed after long pause for second time.
