@@ -2,7 +2,7 @@
 ### compile.asm
 Makefile to compile whole OS, and then make floppy disk image.
 
-:copyright: [Sasha Volohov](https://github.com/SashaVolohov), [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)<br>
+:copyright: [Alexander Volohov](https://github.com/SashaVolohov), [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)<br>
 
 ### standards.inc
 Standards for all source files: constants, macros.
