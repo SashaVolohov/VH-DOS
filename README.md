@@ -83,6 +83,6 @@ Total amount of compiled bytes on this moment
 
 ## Feedback
 <a href="mailto:vhdos.devteam@gmail.com?subject=GitHubRepo%3AVH-DOS&body=Hello%20everybody!%0AI%20want%20to%20tell%20you%20about...">Google Mail</a> **It's important to save subject, else message will not be sended.**<br>
-<a href="https://discord.gg/AQ593d2xdD"><img alt="" src="https://discord.com/assets/ff41b628a47ef3141164bfedb04fb220.png" width="340" height="auto"></a>
+<a href="https://discord.gg/AQ593d2xdD"><img alt="" src="https://discord.com/assets/cb48d2a8d4991281d7a6a95d2f58195e.svg" width="340" height="auto"></a>
 
 <img alt="" src="http://nfewordbag.atwebpages.com/empty?">
