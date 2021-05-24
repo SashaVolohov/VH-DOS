@@ -28,5 +28,5 @@
 ### 24.07.2019
 * Command line parser framework is done.
 
-## 08.07.2019
+### 08.07.2019
 * The beginning of development.
