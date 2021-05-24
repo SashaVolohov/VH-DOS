@@ -1,5 +1,5 @@
 # Operating system VH-DOS
-<img alt="" src="http://nfewordbag.atwebpages.com/empty?">
+<img alt="" src="http://nfewordbag.atwebpages.com/empty?" width="100%">
 
 ## Description Table
 | Type | Description |
