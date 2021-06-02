@@ -23,6 +23,7 @@ VAInfo:
 VAInfo@VGA:	
 	mov ah,0x1A
 	int 0x10
+	cmp al,0x1A
 	jz VAInfo@VGA_Final
 	jmp VAInfo@EGA
 VAInfo@VGA_Final:
