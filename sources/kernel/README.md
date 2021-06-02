@@ -40,7 +40,12 @@ Reverse byte in AX.
 
 :copyright: Anton Fedorov, [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)
 
+### VAInfo.inc
+Video adapter detection. Lowest nibble in AL - data about them.
+
+Partial :copyright: [Larry Holst](https://github.com/Diicorp95), 2007-2021.
+
 ### What_AD.inc
-Video-adapter detection.
+Video adapter detection result. The higher value in AL - the newer adapter is.
 
 :copyright: Sergijj, processed by [Larry Holst](https://github.com/Diicorp95), 2007-2021. [UNLICENSE license.](https://unlicense.org)
