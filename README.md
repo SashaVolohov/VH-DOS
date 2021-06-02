@@ -84,5 +84,5 @@ Total amount of compiled bytes on this moment
 | Setup | 2507B |
 
 ## Feedback
-<a href="mailto:vhdos.devteam@gmail.com?subject=GitHubRepo%3AVH-DOS&body=Hello%20everybody!%0AI%20want%20to%20tell%20you%20about..."><img alt="" src="https://github.com/SashaVolohov/VH-DOS/blob/master/GMAIL_old_logo.png" width="340" height="auto"></a><br>
+**Google mail box was deleted with Google account.**
 <a href="https://discord.gg/AQ593d2xdD"><img alt="" src="https://discord.com/assets/cb48d2a8d4991281d7a6a95d2f58195e.svg" width="340" height="auto"></a>
