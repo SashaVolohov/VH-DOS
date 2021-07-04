@@ -1,5 +1,5 @@
 # Operating system VH-DOS
-<img alt="" src="http://nfewordbag.atwebpages.com/empty?">
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FSashaVolohov%2FVH-DOS&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ## Description Table
 | Type | Description |
@@ -86,4 +86,4 @@ Total amount of compiled bytes on this moment
 ## Feedback
 **Google mail box was deleted with Google account.**
 
-<a href="https://discord.gg/AQ593d2xdD"><img alt="" src="https://discord.com/assets/cb48d2a8d4991281d7a6a95d2f58195e.svg" width="340" height="auto"></a>
+[![Discord server](https://discord.com/assets/cb48d2a8d4991281d7a6a95d2f58195e.svg)](https://discord.gg/AQ593d2xdD)
