@@ -2,7 +2,6 @@
 Development process is frozen due to low people interest to help with it.
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FSashaVolohov%2FVH-DOS&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](#)
-[![Discord server](https://img.shields.io/discord/825320998663356426?label=Discord%20server&logo=Discord&logoColor=%23FFFFFF)](https://discord.gg/AQ593d2xdD)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SashaVolohov/VH-DOS)](https://github.com/SashaVolohov/VH-DOS/commits/master)
 [![GitHub](https://img.shields.io/github/license/SashaVolohov/VH-DOS)](#)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/SashaVolohov/VH-DOS)](#)
