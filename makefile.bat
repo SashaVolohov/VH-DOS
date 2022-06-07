@@ -1,6 +1,6 @@
 @echo off
 title VH-DOS
-set fasm=tools\fasm.exe
+set /p "fasm=Executable FASM file path: "
 set srcs=sources
 set src_boot=sources\boot
 set src_krn=sources\kernel
@@ -18,8 +18,8 @@ for %%a in (%src_boot%\*.asm %src_krn%\*.asm %src_krn%\*.inc %src_cmds%\*.asm %s
 	if "%errorlevel%" gtr "0" (goto endofcompl)
 )
 
-rem Making floppy disk image
-echo:Building floppy disk image...
+rem Making installation image
+echo:Building installation image...
 %fasm% %srcs%\compile.asm
 copy %srcs%\compile.bin %cd%\setup.img> nul
 del %srcs%\*.bin> nul

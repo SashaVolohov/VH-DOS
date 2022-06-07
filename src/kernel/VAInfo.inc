@@ -1,6 +1,6 @@
 ; "Video adapters information"
 ; Original concept from /sources/kernel/What_AD.inc
-; (c) Larry Holst, 2021.
+; by VH-DOS Development Team, 2021-present.
 
 VAInfo:
 ; Output:

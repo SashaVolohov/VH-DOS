@@ -1,4 +1,4 @@
-# Operating system VH-DOS
+# VH-DOS the operating system
 The development process is frozen due to low people interest to help with it.
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SashaVolohov/VH-DOS)](https://github.com/SashaVolohov/VH-DOS/commits/master)

@@ -1,1 +1,0 @@
-VH-DOS 1.4 alpha. (c) VH-DOS development team. Licensed under GNU GPLv3 license.

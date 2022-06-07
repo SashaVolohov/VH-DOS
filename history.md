@@ -1,7 +1,17 @@
-*Dates are specified in DD.MM.YYYY format.*
+*Dates are specified in `DD.MM.YYYY` format.*
+
+### 07.06.2022
+* Updated the license information in sources/version.txt
+* New file formatting style of the source code.
+* Minor corrections to the source code.
+* Disable all debug code.
+* Remove FASM and CWSDPMI from the repository.
+* Add Makefile and makefile.sh for compiling in Linux.
+* All comments in the source code were translated into English.
+* Renamed the `sources/` directory to `src/`.
 
 ### 24.05.2021
-* This file is renamed to **history.md**
+* This file is renamed to `history.md`.
 
 ### 27.03.2021
 * Second re-design of [README.md](https://github.com/SashaVolohov/VH-DOS/blob/master/README.md).
@@ -15,11 +25,11 @@
 * Minor bugfixes.
 
 ### 25.02.2021
-* Hard work on code.
+* Hard work on the code.
 
 ### 13.02.2021
 * [Larry Holst](https://github.com/Diicorp95) joined the development process, while others are inactive now.
-  * This file is renamed to **history.txt**.
+  * This file is renamed to `history.txt`.
   * [README.md](https://github.com/SashaVolohov/VH-DOS/blob/master/README.md) has been created and filled with GitHub formatting standards.
 
 ### 02.04.2020
