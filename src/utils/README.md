@@ -1,9 +1,5 @@
-### cls.asm
-Function clears screens, but there's corrupted encoding of commentaries.
-
-:copyright: VH-DOS Development Team, 2020-2021. [UNLICENSE license.](https://unlicense.org)
-
+# Utils and programs
 ### command.asm
-Command interpreter. It have some hidden bugs.
+The command interpreter.
 
-:copyright: VH-DOS Development Team, 2020-2021. [UNLICENSE license.](https://unlicense.org)
+:copyright: VH-DOS Development Team, 2020-present. [UNLICENSE license](https://unlicense.org).

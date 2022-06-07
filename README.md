@@ -24,6 +24,29 @@ The development process is frozen due to low people interest to help with it.
 | Hard disk capacity | 4 Kibibytes |
 | PC Speaker | *not required* |
 
+## Building
+### Microsoft Windows
+```
+makefile.bat
+```
+
+### Linux, MacOS
+```
+make
+# or
+make all
+```
+
+To install required packages (just `fasm`), run the following command:
+```
+make install
+```
+
+To check that the OS is compiled or had compiled successfully, run the following command:
+```
+make check
+```
+
 ## Developer Team
 ### Bootloader
 | Changes | Author | Since version |

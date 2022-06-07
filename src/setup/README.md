@@ -1,16 +1,14 @@
 ## Used
 ### pre_boot.asm
-The first bootloader of setup disk. It prepares environment, loads *boot.asm* in memory from FDD 0.
+The first bootloader of the installation image. It prepares environment, loads `boot.asm` in memory from first FDD.
 
-:copyright: [Alexander Volohov](https://github.com/SashaVolohov), [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)
+:copyright: VH-DOS Development Team, 2020-present. [UNLICENSE license](https://unlicense.org).
 
 ### boot.asm
-The second bootloader of setup disk. It does the setup.
+The second bootloader of the installation image. It does the main installation process.
 
-:copyright: [Alexander Volohov](https://github.com/SashaVolohov), [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)
+:copyright: VH-DOS Development Team, 2020-present. [UNLICENSE license.](https://unlicense.org).
 
 ## Unused
 ### oursignature.dat
-Formerly, it was used to validate process of reading from FDD 0 to memory.
-
-:copyright: [Larry Holst](https://github.com/Diicorp95), 2020-2021. [UNLICENSE license.](https://unlicense.org)
+Formerly, it was used to validate the process of reading from first FDD to memory.

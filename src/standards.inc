@@ -1,8 +1,8 @@
 ; Global macros, constants
 
 addr_Command		equ 0x1000
-addr_DOSLDR			equ 0x0500
-addr_BSOD			equ 0x1000
+addr_DOSLDR		equ 0x0500
+addr_BSOD		equ 0x1000
 addr_command_reboot	equ 0x07EE
 addr_MultiTxtPrint	equ 0x0A30
 addr_ClearScreen	equ 0x0BAD
