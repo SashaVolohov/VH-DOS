@@ -31,19 +31,19 @@ makefile.bat
 ```
 
 ### Linux, MacOS
-```
+```sh
 make
 # or
 make all
 ```
 
-To install required packages (just `fasm`), run the following command:
-```
+To install the required packages (just `fasm`), run the following command:
+```sh
 make install
 ```
 
 To check that the OS is compiled or had compiled successfully, run the following command:
-```
+```sh
 make check
 ```
 
