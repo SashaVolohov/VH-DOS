@@ -100,9 +100,10 @@ Dates are specified in `DD.MM.YYYY` format.
 - [ ] `raa` command - full administrator access
 
 ## Raw Statistics
-Total amount of compiled bytes on this moment
+The total number of compiled bytes at the moment.
 | Part of the OS | Size (bytes) |
 | :------------- | -----------: |
+| ∑ | 5627 |
 | Bootloader | 2165 |
 | Kernel | 955 |
 | Setup | 2507 |
