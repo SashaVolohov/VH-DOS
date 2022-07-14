@@ -27,10 +27,8 @@ macro FAT12_MBR_end {
 
 macro FormatSector sector, drvindex {
 	mov ax, 0x0501
-	xor ch, ch
-	mov cl, sector
-	xor dh, dh
-	mov dl, drvindex
+	mov cx, 0 + sector
+	mov dx, 0 + drvindex
 	int 0x13
 	sti
 }
@@ -43,29 +41,29 @@ macro ClearExtSeg {
 macro ReadSector index, drvindex, memaddr {
 	mov ax, 0x0201
 	mov bx, memaddr
-	;;>?1>if drvindex >= 1
+	; ~ if drvindex >= 1
 		mov cl, drvindex
 		xor ch, ch; HEAD = 1
-	;>?1>else
-	;;>?1>	xor cx,cx
-	;;>?1>end if
+	; ~ else
+	; ~	xor cx,cx
+	; ~ end if
 	xor dx, dx
 	int 0x13
-	sti
+	; ~ sti
 }
 
 macro WriteSector index, drvindex, memaddr {
 	mov ax, 0x0301
 	mov bx, memaddr
 	mov cx, index
-	;>?1>if drvindex >= 1
+	; ~ if drvindex >= 1
 		mov dl, drvindex
 		xor dh, dh; HEAD = 1
-	;>?1>else
-	;>?1>	xor dx,dx
-	;>?1>end if
+	; ~ else
+	; ~ 	xor dx,dx
+	; ~ end if
 	int 0x13
-	sti
+	; ~ sti
 }
 
 macro TryRead index, drvindex, memaddr, reptimes {
@@ -80,21 +78,21 @@ macro TryRead index, drvindex, memaddr, reptimes {
 	mov ah, 0
 	mov dl, drvindex
 	int 0x13
-	sti
+	; ~ sti
 	
 	ClearExtSeg
 
 	mov ax, 0x0201
 	mov bx, memaddr
 	mov cx, index
-	;>?1>if drvindex >= 1
+	; ~ if drvindex >= 1
 		mov dl, drvindex
 		xor dh, dh; HEAD = 1
-	;>?1>else
-	;>?1>	xor dx,dx
-	;>?1>end if
+	; ~ else
+	; ~ 	xor dx,dx
+	; ~ end if
 	int 0x13
-	sti
+	; ~ sti
 	jc @b
 @@:
 }
